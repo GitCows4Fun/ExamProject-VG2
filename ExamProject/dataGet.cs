@@ -3,8 +3,11 @@ using System.Diagnostics;		// For Debugging, dipshit.
 using MongoDB.Bson;
 using MongoDB.Driver;           // Both needed for MongoDB 
 using System.Text.RegularExpressions;  // Needed for Regex
-using ExamProject;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System;
+using System.IO; 
+using ExamProject;
 
 namespace DataImport
 {
@@ -17,8 +20,11 @@ namespace DataImport
 	}
 	
 
-	private class Record 
+	class Record
 	{
+		public ObservableCollection<Record> Records { get; set; } = new ObservableCollection<Record>();
+		private string? jsonFilePath;
+		private IMongoCollection<BsonDocument>? mongoCollection; // MongoDB collection variable
 
 
 		public string? Id { get; set; }  // Nullable to avoid warnings -- although this shouldnt be null at any point
@@ -27,27 +33,30 @@ namespace DataImport
 		public string? Alignments { get; set; }
 		public double? Chance { get; set; }  // Nullable to prevent warnings
 		public string? Class { get; set; }
-	}
+#pragma warning disable CS1519
+	} 
+#pragma warning restore CS1519 
+
 		private async Task LoadFromMongoDB()
 		{
 			try
 			{
-				if (Regex.IsMatch(txtDBPath.Text, @"^(?:localhost|\d{1,3}(?:\.\d{1,3}){3})(?::\d+)?$") && !string.IsNullOrEmpty(txtDBPath.Text))
+				if (Regex.IsMatch("", @"^(?:localhost|\d{1,3}(?:\.\d{1,3}){3})(?::\d+)?$") && !string.IsNullOrEmpty(""))
 				{
-					Debug.WriteLine("mongodb path is valid: match = " + Regex.Match(txtDBPath.Text, @"^(?:[\d\.]+|localhost):\d+$"));
-					var client = new MongoClient("mongodb://" + txtDBPath.Text);
-					if (!string.IsNullOrEmpty(txtDBName.Text) && txtDBName.Text != "Database" &&
-						!string.IsNullOrEmpty(txtDBColl.Text) && txtDBColl.Text != "Collection")
+					Debug.WriteLine("mongodb path is valid: match = " + Regex.Match("", @"^(?:[\d\.]+|localhost):\d+$"));
+					var client = new MongoClient("mongodb://" + "");
+					if (!string.IsNullOrEmpty("") && "" != "Database" &&
+						!string.IsNullOrEmpty("") && "" != "Collection")
 					{
-						var database = client.GetDatabase(txtDBName.Text);
-						mongoCollection = database.GetCollection<BsonDocument>(txtDBColl.Text);
+						var database = client.GetDatabase("");
+						mongoCollection = database.GetCollection<BsonDocument>("");
 					}
 					else
 					{
 						return;
 					}
 				}
-				else if (string.IsNullOrEmpty(txtDBPath.Text))
+				else if (string.IsNullOrEmpty(""))
 				{
 					var client = new MongoClient("mongodb://localhost:27017");
 					var database = client.GetDatabase("qb");
@@ -95,13 +104,13 @@ namespace DataImport
 		{
 			try
 			{
-				if (string.IsNullOrEmpty(txtJSONPath.Text))
+				if (string.IsNullOrEmpty(""))
 				{
 					return;
 				}
 				else
 				{
-					jsonFilePath = txtJSONPath.Text.Replace(@"\", @"\\");
+					jsonFilePath = "".Replace(@"\", @"\\");
 				}
 
 
