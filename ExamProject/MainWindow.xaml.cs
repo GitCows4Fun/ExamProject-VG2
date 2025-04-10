@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics; // For Stopwatch and/or debugging later 
 using System.Threading;   // For Thread 
 using DataImport;
+using System.Reflection.Metadata;
 
 
 namespace ExamProject
@@ -161,25 +162,31 @@ namespace ExamProject
 			SacValue += 5;
 		}
 
-		private void SetContent(string text)
-		{
-			ContentDisplay.Content = new Label
-			{
-				Content = text,
-				FontSize = 24,
-				HorizontalAlignment = HorizontalAlignment.Center,
-				VerticalAlignment = VerticalAlignment.Center
-			};
-		}
 
-		private void Btn_Money(object sender, RoutedEventArgs e) => SetContent("Money Section");
-		private void Btn_Multipliers(object sender, RoutedEventArgs e) => SetContent("Multipliers Section");
-		private void Btn_Rebirths(object sender, RoutedEventArgs e) => SetContent("Rebirths Section");
-		private void Btn_Prestiges(object sender, RoutedEventArgs e) => SetContent("Prestiges Section");
-		private void Btn_Sacrifices(object sender, RoutedEventArgs e) => SetContent("Sacrifices Section");
-		private void Btn_Ascentions(object sender, RoutedEventArgs e) => SetContent("Ascensions Section");
-		private void Btn_Deities(object sender, RoutedEventArgs e) => SetContent("Deities Section");
-		private void Btn_Saints(object sender, RoutedEventArgs e) => SetContent("Saints Section");
-		private void Btn_GenStat(object sender, RoutedEventArgs e) => SetContent("General Stats Section");
+		private void Btn_Money(object sender, RoutedEventArgs e)
+		{
+            // Clear all children from the Grid
+            content.Children.Clear();
+
+            // Optionally, clear row/column definitions if you want to reset layout
+            // content.RowDefinitions.Clear();
+            // content.ColumnDefinitions.Clear();
+
+            // Example: Adding new items (e.g., Buttons) to the Grid
+            for (int i = 0; i < 3; i++)
+            {
+                Button newButton = new Button
+                {
+                    Content = $"Button {i + 1}",
+                    Margin = new Thickness(5)
+                };
+
+                // Set row and column if needed
+                Grid.SetRow(newButton, i); // Make sure the grid has enough rows defined
+                content.Children.Add(newButton);
+            }
+
+        }
+
 	}
 }

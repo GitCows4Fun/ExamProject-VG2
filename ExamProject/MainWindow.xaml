@@ -63,12 +63,11 @@
 		</StackPanel>
 
 		<!-- Dynamic Content Area -->
-		<Grid Grid.Column="1">
+		<Grid x:Name="content" Grid.Column="1">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="209*"/>
 				<RowDefinition Height="8*"/>
 			</Grid.RowDefinitions>
-			<ContentControl Name="ContentDisplay" Grid.RowSpan="2"/>
-		</Grid>
+        </Grid>
 	</Grid>
 </Window>
