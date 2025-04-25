@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Collections.Generic;
 using System.Diagnostics; // For Stopwatch and/or debugging later 
 using System.Threading;   // For Thread 
-using DataImport;
+//using DataImport;
 using System.Reflection.Metadata;
 
 
@@ -29,40 +29,40 @@ namespace ExamProject
 		static readonly TimeSpan dataUpdateFrequency = TimeSpan.FromMilliseconds(20);
 
 		// Intermittently saves/uploads data / also used to load data
-		void dataThreadProc(char mode = 'S') // modes: S - save U - upload L - load
-		{
-			DataRetrieve dataRetrieve = new DataRetrieve();
-
-			Dictionary<string, int> valArray = new Dictionary<string, int>();
-			Stopwatch sw = Stopwatch.StartNew();
-
-			while (true)
-			{
-				string[] returnedVals = dataRetrieve.getDataFromDB(db_ip, db_port);
-
-				// Process each value in returnedVals
-				for (int i = 0; i < returnedVals.Length; i++)
-				{
-
-					string[] parts = returnedVals[i].Split(':');
-					if (parts.Length != 2){continue;}
-
-					string key = parts[0];
-					int value;
-					if (int.TryParse(parts[1], out value))
-					{
-						if (valArray.ContainsKey(key))
-						{
-							valArray[key] = value;
-						}
-						else
-						{
-							valArray.Add(key, value);
-						}
-					}
-				}
-			}
-		}
+		//void dataThreadProc(char mode = 'S') // modes: S - save U - upload L - load
+		//{
+		//	DataRetrieve dataRetrieve = new DataRetrieve();
+		//
+		//	Dictionary<string, int> valArray = new Dictionary<string, int>();
+		//	Stopwatch sw = Stopwatch.StartNew();
+		//
+		//	while (true)
+		//	{
+		//		string[] returnedVals = dataRetrieve.getDataFromDB(db_ip, db_port);
+		//
+		//		// Process each value in returnedVals
+		//		for (int i = 0; i < returnedVals.Length; i++)
+		//		{
+		//
+		//			string[] parts = returnedVals[i].Split(':');
+		//			if (parts.Length != 2){continue;}
+		//
+		//			string key = parts[0];
+		//			int value;
+		//			if (int.TryParse(parts[1], out value))
+		//			{
+		//				if (valArray.ContainsKey(key))
+		//				{
+		//					valArray[key] = value;
+		//				}
+		//				else
+		//				{
+		//					valArray.Add(key, value);
+		//				}
+		//			}
+		//		}
+		//	}
+		//}
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 		public MainWindow()
@@ -75,7 +75,7 @@ namespace ExamProject
 		}
 
 		// The binds between the lables MonValue and the var _values
-		private int MonValue
+		public int MonValue
 		{
 			get => _monValue;
 			set
@@ -152,41 +152,191 @@ namespace ExamProject
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 
-		// Example: a button click event that increments values
-		private void ScoreButton_Click(object sender, RoutedEventArgs e)
-		{
-			MonValue += 1;
-			MultiValue += 2;
-			RPValue += 3;
-			APValue += 4; // Hi :3 
-			SacValue += 5;
-		}
+		// Button Info
+        public class ButtonInfo
+        {
+            public string Name { get; set; }
+            public string Tooltip { get; set; }
+			public Action? OnClick { get; set; }
 
-
-		private void Btn_Money(object sender, RoutedEventArgs e)
-		{
-            // Clear all children from the Grid
-            content.Children.Clear();
-
-            // Optionally, clear row/column definitions if you want to reset layout
-            // content.RowDefinitions.Clear();
-            // content.ColumnDefinitions.Clear();
-
-            // Example: Adding new items (e.g., Buttons) to the Grid
-            for (int i = 0; i < 3; i++)
+            public ButtonInfo(string name, string tooltip, Action? onClick = null)
             {
-                Button newButton = new Button
+                Name = name;
+                Tooltip = tooltip;
+				OnClick = onClick;
+            }
+        }
+
+		// Section Info
+        public class SectionInfo
+        {
+            public string Header { get; set; }
+            public List<ButtonInfo> Buttons { get; set; }
+            public SectionInfo(string header, List<ButtonInfo> buttons)
+            {
+                Header = header;
+                Buttons = buttons;
+            }
+        }
+
+		// Function: Button.Money
+        private void Btn_Money(object sender, RoutedEventArgs e)
+        {
+            // Clear previous UI
+            content.Children.Clear();
+            content.RowDefinitions.Clear();
+            content.ColumnDefinitions.Clear();
+
+            // Sample data: 3 sections, each with its own buttons
+            var sections = new List<SectionInfo>
+    {
+
+        new SectionInfo("Gain Currency", new List<ButtonInfo>
+        {
+            new ButtonInfo("Collect Coins",   "Gives you +1 copper.", () => MonValue++)
+        }),
+        new SectionInfo("Currency Upgrades", new List<ButtonInfo>
+        {
+            new ButtonInfo("Basic Copper Mining",
+            "Unlocks basic Copper mining techniques, increasing production." +
+			"\n" +
+            "\n" +
+            "Effect: +10% Copper production." +
+			"\n" +
+            "Scaling: Each level adds +5% Copper production." +
+			"\n" +
+            "Max Level: 50" +
+            "\n" +
+			"\n" +
+            "Cost: 1 silver"),
+
+            new ButtonInfo("Enhanced Copper Refinement",    
+			"Cost: 10 copper."),
+            new ButtonInfo("Copper Efficiency",    
+			"Cost: 10 copper."),
+            new ButtonInfo("Advanced Copper Extraction",    
+			"Cost: 10 copper."),
+            new ButtonInfo("Copper Amplification System",    
+			"Cost: 10 copper."),
+            new ButtonInfo("Copper Mega Extraction",    
+			"Cost: 10 copper."),
+            new ButtonInfo("Galactic Copper Mining",    
+			"Cost: 10 copper."),
+            new ButtonInfo("Ultimate Copper Extraction",    
+			"Cost: 10 copper."),
+        }),
+        new SectionInfo("Multiplier Upgrades", new List<ButtonInfo>
+        {
+            new ButtonInfo("1.5× Multiplier",   "Cost: 50 copper"),
+            new ButtonInfo("3× Multiplier",   "Cost: 1 silver"),
+        }),
+        // …add more sections as you like
+    };
+
+            // 3) Build Grid: one column per section
+            foreach (var _ in sections)
+                content.ColumnDefinitions.Add(new ColumnDefinition());
+
+            // 2 rows: headers + content
+            content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+
+            // 4) Populate each section
+            for (int col = 0; col < sections.Count; col++)
+            {
+                var section = sections[col];
+
+                // 4a) Header label
+                var headerLabel = new TextBlock
                 {
-                    Content = $"Button {i + 1}",
-                    Margin = new Thickness(5)
+                    Text = section.Header,
+                    FontWeight = FontWeights.Bold,
+                    Margin = new Thickness(5),
+                    HorizontalAlignment = HorizontalAlignment.Center
+                };
+                Grid.SetRow(headerLabel, 0);
+                Grid.SetColumn(headerLabel, col);
+                content.Children.Add(headerLabel);
+
+                // 4b) Container for buttons
+                var stack = new StackPanel
+                {
+                    Orientation = Orientation.Vertical,
+                    Margin = new Thickness(5),
+                    VerticalAlignment = VerticalAlignment.Top
                 };
 
-                // Set row and column if needed
-                Grid.SetRow(newButton, i); // Make sure the grid has enough rows defined
-                content.Children.Add(newButton);
+                // 4c) Create each button in this section
+                foreach (var info in section.Buttons)
+                {
+                    var btn = new Button
+                    {
+                        Content = info.Name,
+                        ToolTip = info.Tooltip,
+                        Margin = new Thickness(2),
+                        Width = 120,
+                        Height = 30
+                    };
+
+					// Hook up click event!
+					Console.Write("Event works?");
+                    if (info.Name == "Collect Coins")
+                    {
+                        btn.Click += (s, args) => MonValue += 1;
+                        Console.Write("Money Value Increased +N");
+                    }
+
+                    stack.Children.Add(btn);
+                }
+
+                Grid.SetRow(stack, 1);
+                Grid.SetColumn(stack, col);
+                content.Children.Add(stack);
             }
+        }
+
+
+
+
+
+        private void Btn_Multipliers(object sender, RoutedEventArgs e)
+        {
 
         }
 
-	}
+        private void Btn_Rebirths(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Btn_Prestiges(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Btn_Ascentions(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Btn_Sacrifices(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Btn_Deities(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Btn_Saints(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Btn_GenStat(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
 }
