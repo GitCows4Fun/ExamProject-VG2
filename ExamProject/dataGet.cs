@@ -22,20 +22,18 @@ namespace DataImport
 
 	class Record
 	{
-		public ObservableCollection<Record> Records { get; set; } = new ObservableCollection<Record>();
-		private string? jsonFilePath;
-		private IMongoCollection<BsonDocument>? mongoCollection; // MongoDB collection variable
+		public ObservableCollection<Record> Records { get; set; } = new ObservableCollection<Record>(); 
+		private string? jsonFilePath; 
+		private IMongoCollection<BsonDocument>? mongoCollection; // MongoDB collection variable 
 
 
-		public string? Id { get; set; }  // Nullable to avoid warnings -- although this shouldnt be null at any point
-		public string? Name { get; set; }
-		public string? Lore { get; set; }
-		public string? Alignments { get; set; }
-		public double? Chance { get; set; }  // Nullable to prevent warnings
-		public string? Class { get; set; }
-#pragma warning disable CS1519
-	} 
-#pragma warning restore CS1519 
+		public string? Id { get; set; }  // Nullable to avoid warnings -- although this shouldnt be null at any point 
+		public string? Name { get; set; } 
+		public string? Lore { get; set; } 
+		public string? Alignments { get; set; } 
+		public double? Chance { get; set; }  // Nullable to prevent warnings 
+		public string? Class { get; set; } 
+ 
 
 		private async Task LoadFromMongoDB()
 		{
