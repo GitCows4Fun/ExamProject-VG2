@@ -17,21 +17,21 @@
 			<!-- Money -->
 			<Button Content="Money" Click="Btn_Money" Height="30"/>
             <!-- MultiVal -->
-            <Button Content="Multipliers" Click="Btn_Multipliers" Height="30"/>
+            <Button Content="Multipliers"  Height="30"/>
             <!-- RPVal -->
-            <Button Content="Rebirths" Click="Btn_Rebirths" Height="30"/>
+            <Button Content="Rebirths"  Height="30"/>
             <!-- PPVal -->
-            <Button Content="Prestiges" Click="Btn_Prestiges" Height="30"/>
+            <Button Content="Prestiges"  Height="30"/>
             <!-- APVal -->
-            <Button Content="Ascensions" Click="Btn_Ascentions" Height="30"/>
+            <Button Content="Ascensions"  Height="30"/>
             <!-- SacVal -->
-            <Button Content="Sacrifices" Click="Btn_Sacrifices" Height="30"/>
+            <Button Content="Sacrifices"  Height="30"/>
             <!-- DietiyVal -->
-            <Button Content="Deities" Click="Btn_Deities" Height="30"/>
+            <Button Content="Deities"  Height="30"/>
             <!-- SaintsVal -->
-            <Button Content="Saints" Click="Btn_Saints" Height="30"/>
+            <Button Content="Saints"  Height="30"/>
             <!-- General Stats -->
-            <Button Content="General Stats" Click="Btn_GenStat" Height="30"/>
+            <Button Content="General Stats"  Height="30"/>
 
 			<!-- Stat_Stackpanels -->
 			<StackPanel Height="156" Orientation="Horizontal">
