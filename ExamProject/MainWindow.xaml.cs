@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Collections.Generic;
 using System.Diagnostics; // For Stopwatch and/or debugging later 
 using System.Threading;   // For Thread 
-using DataImport;
+//using DataImport;
 using System.Reflection.Metadata;
 
 
@@ -29,40 +29,40 @@ namespace ExamProject
 		static readonly TimeSpan dataUpdateFrequency = TimeSpan.FromMilliseconds(20);
 
 		// Intermittently saves/uploads data / also used to load data
-		void dataThreadProc(char mode = 'S') // modes: S - save U - upload L - load
-		{
-			DataRetrieve dataRetrieve = new DataRetrieve();
+		//void dataThreadProc(char mode = 'S') // modes: S - save U - upload L - load
+		//{
+		//	DataRetrieve dataRetrieve = new DataRetrieve();
 
-			Dictionary<string, int> valArray = new Dictionary<string, int>();
-			Stopwatch sw = Stopwatch.StartNew();
+		//	Dictionary<string, int> valArray = new Dictionary<string, int>();
+		//	Stopwatch sw = Stopwatch.StartNew();
 
-			while (true)
-			{
-				string[] returnedVals = dataRetrieve.getDataFromDB(db_ip, db_port);
+		//	while (true)
+		//	{
+		//		string[] returnedVals = dataRetrieve.getDataFromDB(db_ip, db_port);
 
-				// Process each value in returnedVals
-				for (int i = 0; i < returnedVals.Length; i++)
-				{
+		//		// Process each value in returnedVals
+		//		for (int i = 0; i < returnedVals.Length; i++)
+		//		{
 
-					string[] parts = returnedVals[i].Split(':');
-					if (parts.Length != 2){continue;}
+		//			string[] parts = returnedVals[i].Split(':');
+		//			if (parts.Length != 2){continue;}
 
-					string key = parts[0];
-					int value;
-					if (int.TryParse(parts[1], out value))
-					{
-						if (valArray.ContainsKey(key))
-						{
-							valArray[key] = value;
-						}
-						else
-						{
-							valArray.Add(key, value);
-						}
-					}
-				}
-			}
-		}
+		//			string key = parts[0];
+		//			int value;
+		//			if (int.TryParse(parts[1], out value))
+		//			{
+		//				if (valArray.ContainsKey(key))
+		//				{
+		//					valArray[key] = value;
+		//				}
+		//				else
+		//				{
+		//					valArray.Add(key, value);
+		//				}
+		//			}
+		//		}
+		//	}
+		//}
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 		public MainWindow()
