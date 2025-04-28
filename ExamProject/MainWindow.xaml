@@ -1,7 +1,10 @@
 ﻿<Window x:Class="ExamProject.MainWindow"
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		Title="MainWindow" Height="450" Width="800">
+		Title="MainWindow" Height="450" Width="800"
+		xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+		diag:PresentationTraceSources.TraceLevel="High"
+		xmlns:local="clr-namespace:ExamProject">
 	<Grid>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="200"/>
@@ -16,22 +19,22 @@
 			<!-- Sidebar-Buttons -->
 			<!-- Money -->
 			<Button Content="Money" Click="Btn_Money" Height="30"/>
-            <!-- MultiVal -->
-            <Button Content="Multipliers"  Height="30"/>
-            <!-- RPVal -->
-            <Button Content="Rebirths"  Height="30"/>
-            <!-- PPVal -->
-            <Button Content="Prestiges"  Height="30"/>
-            <!-- APVal -->
-            <Button Content="Ascensions"  Height="30"/>
-            <!-- SacVal -->
-            <Button Content="Sacrifices"  Height="30"/>
-            <!-- DietiyVal -->
-            <Button Content="Deities"  Height="30"/>
-            <!-- SaintsVal -->
-            <Button Content="Saints"  Height="30"/>
-            <!-- General Stats -->
-            <Button Content="General Stats"  Height="30"/>
+			<!-- MultiVal -->
+			<Button Content="Multipliers" Click="Btn_Multipliers" Height="30"/>
+			<!-- RPVal -->
+			<Button Content="Rebirths" Click="Btn_Rebirths" Height="30"/>
+			<!-- PPVal -->
+			<Button Content="Prestiges" Click="Btn_Prestiges" Height="30"/>
+			<!-- APVal -->
+			<Button Content="Ascensions" Click="Btn_Ascentions" Height="30"/>
+			<!-- SacVal -->
+			<Button Content="Sacrifices" Click="Btn_Sacrifices" Height="30"/>
+			<!-- DietiyVal -->
+			<Button Content="Deities" Click="Btn_Deities" Height="30"/>
+			<!-- SaintsVal -->
+			<Button Content="Saints" Click="Btn_Saints" Height="30"/>
+			<!-- General Stats -->
+			<Button Content="General Stats" Click="Btn_GenStat" Height="30"/>
 
 			<!-- Stat_Stackpanels -->
 			<StackPanel Height="156" Orientation="Horizontal">
@@ -39,23 +42,22 @@
 				
 				<!-- Stat_Lables -->
 				<StackPanel Width="100">
-					<Label Content="Money       :"/>
-					<Label Content="Multiplier  :"/>
-					<Label Content="Rebirths    :"/>
-					<Label Content="Prestiges   :"/>
-					<Label Content="Ascensions  :"/>
-					<Label Content="Sacrifices  :"/>
+					<Label Content="Money          :"/>
+					<Label Content="Multiplier      :"/>
+					<Label Content="Rebirths        :"/>
+					<Label Content="Prestiges      :"/>
+					<Label Content="Ascentions   :"/>
+					<Label Content="Sacrifices     :"/>
 				</StackPanel>
 				<!-- Stat_Values -->
 				<StackPanel Width="100">
-					<Label Content="{Binding MonValue}"/>
+					<Label Content="{Binding MonValue, Mode=OneWay}"/>
 					<Label Content="{Binding MultiValue}"/>
 					<Label Content="{Binding RPValue}"/>
 					<Label Content="{Binding PPValue}"/>
 					<Label Content="{Binding APValue}"/>
 					<Label Content="{Binding SacValue}"/>
 				</StackPanel>
-
 
 			</StackPanel>
 
@@ -68,6 +70,6 @@
 				<RowDefinition Height="209*"/>
 				<RowDefinition Height="8*"/>
 			</Grid.RowDefinitions>
-        </Grid>
+		</Grid>
 	</Grid>
 </Window>
