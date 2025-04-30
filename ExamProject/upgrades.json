@@ -18,7 +18,7 @@
 	},
 		{"id": 1
 		,"name": "Enhanced Copper Refinement"
-		,"description": "Refines Copper to produce more with each extraction. [+20%, +10%/lvl Max lvl: 40]"
+		,"description": "Refines Copper to produce more with each extraction. [+20%, +10%/lvl, Max lvl: 40]"
 		,"cost": 5
 		,"currency": 1
 		,"costscale": 0
