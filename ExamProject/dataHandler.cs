@@ -37,7 +37,7 @@ namespace DataImport
 #pragma warning disable CS1998
 #pragma warning disable CS1822
 		// This is what will initially load the base values to be used from variousjson files in the appropriate folder 
-		private async Task InitializeBaseValues()
+		public async Task InitializeBaseValues()
 		{
 
 		}
