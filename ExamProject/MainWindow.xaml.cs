@@ -961,55 +961,5 @@ namespace ExamProject
 				content.Children.Add(stack);
 			}
 		}
-
-
-		private void Btn_Multipliers(object sender, RoutedEventArgs e)
-		{
-
-		}
-
-		private void Btn_Rebirths(object sender, RoutedEventArgs e)
-		{
-
-		}
-
-		private void Btn_Prestiges(object sender, RoutedEventArgs e)
-		{
-
-		}
-
-		private void Btn_Ascentions(object sender, RoutedEventArgs e)
-		{
-
-		}
-
-		private void Btn_Sacrifices(object sender, RoutedEventArgs e)
-		{
-
-		}
-
-		private void Btn_Deities(object sender, RoutedEventArgs e)
-		{
-
-		}
-
-                    stack.Children.Add(btn);
-                }
-		private void Btn_Saints(object sender, RoutedEventArgs e)
-		{
-
-		}
-
-                Grid.SetRow(stack, 1);
-                Grid.SetColumn(stack, col);
-                content.Children.Add(stack);
-            }
-        }
     }
-}
-		private void Btn_GenStat(object sender, RoutedEventArgs e)
-		{
-
-		}
-	}
 }
