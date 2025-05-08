@@ -96,7 +96,7 @@ namespace ExamProject
 			set
 			{
 				_multiValue = value;
-				OnPropertyChanged();
+				OnPropertyChanged(nameof(MultiValue));
 			}
 		}
 
@@ -106,7 +106,7 @@ namespace ExamProject
 			set
 			{
 				_rpValue = value;
-				OnPropertyChanged();
+				OnPropertyChanged(nameof(RPValue));
 			}
 		}
 
@@ -116,7 +116,7 @@ namespace ExamProject
 			set
 			{
 				_ppValue = value;
-				OnPropertyChanged();
+				OnPropertyChanged(nameof(PPValue));
 			}
 		}
 
@@ -126,7 +126,7 @@ namespace ExamProject
 			set
 			{
 				_apValue = value;
-				OnPropertyChanged();
+				OnPropertyChanged(nameof(APValue));
 			}
 		}
 
@@ -136,7 +136,7 @@ namespace ExamProject
 			set
 			{
 				_sacValue = value;
-				OnPropertyChanged();
+				OnPropertyChanged(nameof(SacValue));
 			}
 		}
 
@@ -146,7 +146,7 @@ namespace ExamProject
 			set
 			{
 				_dietValue = value;
-				OnPropertyChanged();
+				OnPropertyChanged(nameof());
 			}
 		}
 
