@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Controls;
 using System.Collections.Generic;
 using System.Diagnostics; // For Stopwatch and/or debugging later 
@@ -12,41 +13,41 @@ using System.Reflection.Metadata;
 
 namespace ExamProject
 {
-	public partial class MainWindow : Window
+	public partial class MainWindow : Window, INotifyPropertyChanged
 	{
 		public string db_ip;
 		public string db_port;
 
-		private int _monValue;
-		private int _multiValue;
-		private int _rpValue;
-		private int _ppValue;
-		private int _apValue;
-		private int _sacValue;
-		private int _dietValue;
+		private int _monValue = 0;
+		private int _multiValue = 0;
+		private int _rpValue = 0;
+		private int _ppValue = 0;
+		private int _apValue = 0;
+		private int _sacValue = 0;
+		private int _dietValue = 0;
 
 		// This area is very experimental and i have no idea if it will work.
 		static readonly TimeSpan dataUpdateFrequency = TimeSpan.FromMilliseconds(20);
 
 		// Intermittently saves/uploads data / also used to load data
-		//void dataThreadProc(char mode = 'S') // modes: S - save U - upload L - load
+		//private async Task dataThreadProc(char mode = 'S') // modes: S - save U - upload L - load
 		//{
 		//	DataRetrieve dataRetrieve = new DataRetrieve();
-		//
+		
 		//	Dictionary<string, int> valArray = new Dictionary<string, int>();
 		//	Stopwatch sw = Stopwatch.StartNew();
-		//
+		
 		//	while (true)
 		//	{
 		//		string[] returnedVals = dataRetrieve.getDataFromDB(db_ip, db_port);
-		//
+		
 		//		// Process each value in returnedVals
 		//		for (int i = 0; i < returnedVals.Length; i++)
 		//		{
-		//
+		
 		//			string[] parts = returnedVals[i].Split(':');
 		//			if (parts.Length != 2){continue;}
-		//
+		
 		//			string key = parts[0];
 		//			int value;
 		//			if (int.TryParse(parts[1], out value))
@@ -74,18 +75,22 @@ namespace ExamProject
 			DataContext = this;
 		}
 
-		// The binds between the lables MonValue and the var _values
-		public int MonValue
-		{
-			get => _monValue;
-			set
-			{
-				_monValue = value;
-				OnPropertyChanged();
-			}
-		}
+        // The binds between the lables MonValue and the var _values
+        public int MonValue
+        {
+            get => _monValue;
+            set
+            {
+                if (_monValue != value)
+                {
+                    _monValue = value;
+                    OnPropertyChanged(nameof(MonValue));
+                    Console.WriteLine($"MonValue updated to {_monValue}"); // Debugging statement
+                }
+            }
+        }
 
-		private int MultiValue
+        private int MultiValue
 		{
 			get => _multiValue;
 			set
@@ -146,38 +151,39 @@ namespace ExamProject
 		}
 
 		// Implement INotifyPropertiesChanged
-		public event PropertyChangedEventHandler PropertyChanged;
-		private void OnPropertyChanged([CallerMemberName] string propertyName = "null")
+		public event PropertyChangedEventHandler? PropertyChanged;
+		private void OnPropertyChanged([CallerMemberName] string propertyName = "")
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+			Console.WriteLine("Property Changed: {0}", propertyName); 
 		}
 
 		// Button Info
-        public class ButtonInfo
-        {
-            public string Name { get; set; }
-            public string Tooltip { get; set; }
+		public class ButtonInfo
+		{
+			public string Name { get; set; }
+			public string Tooltip { get; set; }
 			public Action? OnClick { get; set; }
 
-            public ButtonInfo(string name, string tooltip, Action? onClick = null)
-            {
-                Name = name;
-                Tooltip = tooltip;
+			public ButtonInfo(string name, string tooltip, Action? onClick = null)
+			{
+				Name = name;
+				Tooltip = tooltip;
 				OnClick = onClick;
-            }
-        }
+			}
+		}
 
 		// Section Info
-        public class SectionInfo
-        {
-            public string Header { get; set; }
-            public List<ButtonInfo> Buttons { get; set; }
-            public SectionInfo(string header, List<ButtonInfo> buttons)
-            {
-                Header = header;
-                Buttons = buttons;
-            }
-        }
+		public class SectionInfo
+		{
+			public string Header { get; set; }
+			public List<ButtonInfo> Buttons { get; set; }
+			public SectionInfo(string header, List<ButtonInfo> buttons)
+			{
+				Header = header;
+				Buttons = buttons;
+			}
+		}
 
 		// Function: Button.Money
         private void Btn_Money(object sender, RoutedEventArgs e)
@@ -957,9 +963,52 @@ namespace ExamProject
                         btn.Click += (s, args) => MonValue += 1;
                         Console.Write("Money Value Increased +N");
                     }
+					stack.Children.Add(btn);
+				}
+
+				Grid.SetRow(stack, 1);
+				Grid.SetColumn(stack, col);
+				content.Children.Add(stack);
+			}
+		}
+
+
+		private void Btn_Multipliers(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void Btn_Rebirths(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void Btn_Prestiges(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void Btn_Ascentions(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void Btn_Sacrifices(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void Btn_Deities(object sender, RoutedEventArgs e)
+		{
+
+		}
 
                     stack.Children.Add(btn);
                 }
+		private void Btn_Saints(object sender, RoutedEventArgs e)
+		{
+
+		}
 
                 Grid.SetRow(stack, 1);
                 Grid.SetColumn(stack, col);
@@ -967,4 +1016,10 @@ namespace ExamProject
             }
         }
     }
+}
+		private void Btn_GenStat(object sender, RoutedEventArgs e)
+		{
+
+		}
+	}
 }

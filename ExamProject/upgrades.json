@@ -1,0 +1,1299 @@
+[
+	{
+		"id": 0
+		,"name": "Basic Copper Mining"
+		,"description": "Unlock basic Copper mining techniques, increasing production. [+10%, +5%/lvl, Max lvl: 50]"
+		,"cost": 1
+		,"currency": 1
+		,"costscale": 0
+		,"effectscale": 0.05
+		,"maxlevel": 50
+		,"effectlow": 0.1
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 1
+		,"name": "Enhanced Copper Refinement"
+		,"description": "Refines Copper to produce more with each extraction. [+20%, +10%/lvl, Max lvl: 40]"
+		,"cost": 5
+		,"currency": 1
+		,"costscale": 0
+		,"effectscale": 0.1
+		,"maxlevel": 40
+		,"effectlow": 0.2
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 2
+		,"name": "Copper Efficiency"
+		,"description": "Boosts Copper mining output through more efficient equipment. [+50%, +25%/lvl, Max lvl: 30]"
+		,"cost": 25
+		,"currency": 1
+		,"costscale": 0
+		,"effectscale": 0.25
+		,"maxlevel": 30
+		,"effectlow": 0.5
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 3
+		,"name": "Advanced Copper Extraction"
+		,"description": "Unlocks advanced mining techniques for a massive boost in Copper yields. [+100%, +50%/lvl, Max lvl: 20]"
+		,"cost": 1
+		,"currency": 2
+		,"costscale": 0
+		,"effectscale": 0.5
+		,"maxlevel": 20
+		,"effectlow": 1
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 4
+		,"name": "Copper Amplification System"
+		,"description": "A system designed to amplify Copper production at an industrial level. [+500%, +150%/lvl, Max lvl: 15]"
+		,"cost": 25
+		,"currency": 2
+		,"costscale": 0
+		,"effectscale": 1.5
+		,"maxlevel": 15
+		,"effectlow": 5
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 5
+		,"name": "Copper Mega Extraction"
+		,"description": "A breakthrough in mining technology allows for enormous Copper output. [+1000%, +500%/lvl, Max lvl: 10]"
+		,"cost": 1
+		,"currency": 3
+		,"costscale": 0
+		,"effectscale": 5
+		,"maxlevel": 10
+		,"effectlow": 10
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 6
+		,"name": "Galactic Copper Mining"
+		,"description": "Unlocks intergalactic Copper mining to bring in massive quantities. [+2500%, +1250%/lvl, Max lvl: 5]"
+		,"cost": 50
+		,"currency": 3
+		,"costscale": 0
+		,"effectscale": 12.5
+		,"maxlevel": 5
+		,"effectlow": 25
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 7
+		,"name": "Ultimate Copper Extraction"
+		,"description": "+10000%, +5000%/lvl, Max lvl: 3"
+		,"cost": 5
+		,"currency": 4
+		,"costscale": 0
+		,"effectscale": 50
+		,"maxlevel": 3
+		,"effectlow": 100
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 8
+		,"name": "Hyper Growth"
+		,"description": "Boosts Money production per Rebirth. [+20%, +5%/lvl, Max lvl: 50]"
+		,"cost": 3
+		,"currency": 4
+		,"costscale": 0
+		,"effectscale": 0.05
+		,"maxlevel": 50
+		,"effectlow": 0.2
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 9
+		,"name": "Rebirth Efficiency"
+		,"description": "Lowers the cost of the next Rebirth. [-5%, -1%/lvl, Max lvl: 30]"
+		,"cost": 2
+		,"currency": 4
+		,"costscale": 0
+		,"effectscale": -0.01
+		,"maxlevel": 30
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": -0.05
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 10
+		,"name": "Recursive Growth"
+		,"description": "Each Rebirth increases production speed. [+6%, +2%/lvl, Max lvl: 50]"
+		,"cost": 4
+		,"currency": 4
+		,"costscale": 0
+		,"effectscale": 0.02
+		,"maxlevel": 50
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0.06
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 11
+		,"name": "Second Wind"
+		,"description": "Retains a portion of resources after Rebirth. [5%, +1%/lvl, Max lvl: 35]"
+		,"cost": 6
+		,"currency": 4
+		,"costscale": 0
+		,"effectscale": 0.01
+		,"maxlevel": 35
+		,"effectlow": 0.05
+		,"effecthigh": 0.05
+		,"effectre": 0.05
+		,"effectpre": 0.05
+		,"effectasc": 0.05
+		,"effectsac": 0.05
+		,"effectde": 0
+	},
+		{"id": 12
+		,"name": "Momentum stacking"
+		,"description": "Each Rebirth stacks a permanent multiplier to Money. [x1.1, +0.05/lvl, Max lvl: 50, Max stack: 25]"
+		,"cost": 5
+		,"currency": 4
+		,"costscale": 0
+		,"effectscale": 0.05
+		,"maxlevel": 50
+		,"effectlow": 1.1
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 12
+		,"name": "Rebirth Overflow"
+		,"description": "Converts excess RP into Money. [2%, +1%/lvl, Max lvl: 18]"
+		,"cost": 3
+		,"currency": 4
+		,"costscale": 0
+		,"effectscale": 0.01
+		,"maxlevel": 18
+		,"effectlow": 0.02
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 14
+		,"name": "Compounding Returns"
+		,"description": "Increases RP gain per Rebirth. [+5%, +2%/lvl, Max lvl: 45]"
+		,"cost": 4
+		,"currency": 7
+		,"costscale": 0
+		,"effectscale": 0.02
+		,"maxlevel": 45
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0.05
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 15
+		,"name": "Exponential surge"
+		,"description": "Rebirths increase the base Money multiplier. [x1.2, +0.05/lvl, Max lvl: 40]"
+		,"cost": 10
+		,"currency": 4
+		,"costscale": 0
+		,"effectscale": 0.05
+		,"maxlevel": 40
+		,"effectlow": 1.2
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 16
+		,"name": "Legacy Carryover"
+		,"description": "Some RP upgrades persist after Prestiging. [5%, +1%/lvl, Max lvl: 45]"
+		,"cost": 8
+		,"currency": 4
+		,"costscale": 0
+		,"effectscale": 0.01
+		,"maxlevel": 45
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0.05
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 17
+		,"name": "Rebirth synergy"
+		,"description": "Boosts Prestige Points gain based on total Rebirths. [+2%/10r, +1%/lvl, Max lvl: 28]"
+		,"cost": 9
+		,"currency": 4
+		,"costscale": 0
+		,"effectscale": 0.01
+		,"maxlevel": 28
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0.02
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 18
+		,"name": "Energized Rebirths"
+		,"description": "Each Rebirth gives a short-term Money boost. [x0.1/35s, +0.1&+5s/lvl, Max lvl: 19]"
+		,"cost": 12
+		,"currency": 4
+		,"costscale": 0
+		,"effectscale": 0.1
+		,"maxlevel": 19
+		,"effectlow": 0.1
+		,"effecthigh": 0
+		,"effectre": 35
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 5
+	},
+		{"id": 19
+		,"name": "Rebirth Efficiency II"
+		,"description": "Further reduces Rebirth cost, stacking with the first tier. [-3%, -0.5%/lvl, Max lvl: 25]"
+		,"cost": 6
+		,"currency": 4
+		,"costscale": 0
+		,"effectscale": -0.005
+		,"maxlevel": 25
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": -0.03
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 20
+		,"name": "Persistent Momentum"
+		,"description": "Keeps a fraction of your last Rebirth's Money gain. [1%, +0.5%/lvl, Max lvl: 30]"
+		,"cost": 5
+		,"currency": 4
+		,"costscale": 0
+		,"effectscale": 0.005
+		,"maxlevel": 30
+		,"effectlow": 0.01
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 21
+		,"name": "Rebirth Automation"
+		,"description": "Enables automatic Rebirths once conditions are met."
+		,"cost": 25
+		,"currency": 4
+		,"costscale": 0
+		,"effectscale": 0
+		,"maxlevel": 1
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 22
+		,"name": "Prestige Accelerator"
+		,"description": "Increases Money production per Prestige. [+15%, +5%/lvl, Max lvl: 5]"
+		,"cost": 5
+		,"currency": 9
+		,"costscale": 0
+		,"effectscale": 0.05
+		,"maxlevel": 5
+		,"effectlow": 0.15
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 23
+		,"name": "Persistent Multiplier"
+		,"description": "Keeps a fraction of previous Money multiplier after Prestige. [5%, +1%/lvl, Max lvl: 45]"
+		,"cost": 5
+		,"currency": 9
+		,"costscale": 0
+		,"effectscale": 0.01
+		,"maxlevel": 45
+		,"effectlow": 0.05
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 24
+		,"name": "Prestige Overflow"
+		,"description": "Converts excess PP into RP. (On rebirth/prestige/ascension) [1%, +1%/lvl, Max lvl: 100]"
+		,"cost": 10
+		,"currency": 9
+		,"costscale": 0
+		,"effectscale": 0.01
+		,"maxlevel": 100
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0.01
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 25
+		,"name": "Prestige Efficiency"
+		,"description": "Reduces the PP requirement for upgrades. [-5%, -1%/lvl, Max lvl: 36]"
+		,"cost": 8
+		,"currency": 9
+		,"costscale": 0
+		,"effectscale": -0.01
+		,"maxlevel": 36
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": -0.05
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 26
+		,"name": "Exponential Growth"
+		,"description": "Each Prestige increases the base Money multiplier. [x1.3, +0.05/lvl, Max lvl: 50]"
+		,"cost": 15
+		,"currency": 9
+		,"costscale": 0
+		,"effectscale": 0.05
+		,"maxlevel": 50
+		,"effectlow": 1.3
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 27
+		,"name": "Prestige Echo"
+		,"description": "Each Prestige uffs future Rebirth multipliers. [+2%, +2%/lvl, Max lvl: 25]"
+		,"cost": 12
+		,"currency": 9
+		,"costscale": 0
+		,"effectscale": 0.02
+		,"maxlevel": 25
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0.02
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 28
+		,"name": "Time Compression"
+		,"description": "Reduces the cooldown between Prestiges. [-5%, -1%/lvl, Max lvl: 50]"
+		,"cost": 10
+		,"currency": 9
+		,"costscale": 0
+		,"effectscale": -0.05
+		,"maxlevel": 50
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": -0.05
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 29
+		,"name": "Compound Prestige"
+		,"description": "PP gains increase by total Prestige count. [+1%, +0.5%/lvl, Max lvl: 60]"
+		,"cost": 20
+		,"currency": 9
+		,"costscale": 0
+		,"effectscale": 0.005
+		,"maxlevel": 60
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0.01
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 30
+		,"name": "Legacy Acceleration"
+		,"description": "Increases Money gain based on lifetime PP earned. [+0.1%/10'000, +0.05%/lvl, Max lvl: 50]"
+		,"cost": 25
+		,"currency": 9
+		,"costscale": 0
+		,"effectscale": 0.0005
+		,"maxlevel": 50
+		,"effectlow": 0.001
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 31
+		,"name": "Wealth Retention"
+		,"description": "Keeps a fraction of Money when Prestiging. [1%, +1%/lvl, Max lvl: 20]"
+		,"cost": 30
+		,"currency": 9
+		,"costscale": 0
+		,"effectscale": 0.01
+		,"maxlevel": 20
+		,"effectlow": 0.01
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 32
+		,"name": "Prestige synergy"
+		,"description": "Boosts AP gain based on total Prestige count. Caps at 250 Prestiges. [+1%/10, +0.5%/lvl, Max lvl: 30]"
+		,"cost": 35
+		,"currency": 9
+		,"costscale": 0
+		,"effectscale": 0.005
+		,"maxlevel": 30
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0.01
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 33
+		,"name": "Energized Prestige"
+		,"description": "Short-term production boost after prestiging. [x2/60s, +10s/lvl, Max lvl: 25]"
+		,"cost": 50
+		,"currency": 9
+		,"costscale": 0
+		,"effectscale": 10
+		,"maxlevel": 25
+		,"effectlow": 2
+		,"effecthigh": 60
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 34
+		,"name": "Persistent Fortune"
+		,"description": "Keeps a fraction of RP when Prestiging. [5%, +1%/lvl, Max lvl: 25]"
+		,"cost": 30
+		,"currency": 9
+		,"costscale": 0
+		,"effectscale": 0.01
+		,"maxlevel": 25
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0.05
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 35
+		,"name": "Prestige Automation"
+		,"description": "Enables automatic Prestiging once conditions are met."
+		,"cost": 100
+		,"currency": 9
+		,"costscale": 0
+		,"effectscale": 0
+		,"maxlevel": 1
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 36
+		,"name": "Copper Obssession"
+		,"description": "Your love for copper blinds you - you're mining it faster than you can think! [x4'000]"
+		,"cost": 175
+		,"currency": 9
+		,"costscale": 0
+		,"effectscale": 0
+		,"maxlevel": 1
+		,"effectlow": 4000
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 37
+		,"name": "Divine Favor"
+		,"description": "Increases Deity power per Ascension. [+12.5%, +1.25%/lvl, Max lvl: 50]"
+		,"cost": 1
+		,"currency": 10
+		,"costscale": 0
+		,"effectscale": 0.0125
+		,"maxlevel": 50
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0.125
+	},
+		{"id": 38
+		,"name": "Sacred Influence"
+		,"description": "Enhances all lower-tier currencies. [+10%, +2.5%/lvl, Max lvl: 12]"
+		,"cost": 1
+		,"currency": 10
+		,"costscale": 0
+		,"effectscale": 0.025
+		,"maxlevel": 12
+		,"effectlow": 0.1
+		,"effecthigh": 0.1
+		,"effectre": 0.1
+		,"effectpre": 0.1
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 39
+		,"name": "Ethereal Bank"
+		,"description": "Stores a fraction of previous Ascension's resources for the next one. [5%, +1% & -0.025x gain/lvl, Max lvl: 25]"
+		,"cost": 3
+		,"currency": 10
+		,"costscale": 0
+		,"effectscale": 0.01
+		,"maxlevel": 25
+		,"effectlow": 0.05
+		,"effecthigh": 0.05
+		,"effectre": 0.05
+		,"effectpre": 0.05
+		,"effectasc": 0.05
+		,"effectsac": 0.05
+		,"effectde": -0.025
+	},
+		{"id": 40
+		,"name": "Godly Presence"
+		,"description": "Each ascension permanently buffs a chosen deity. [+10%, +2%/lvl, Max lvl: 45]"
+		,"cost": 3
+		,"currency": 10
+		,"costscale": 0
+		,"effectscale": 0.02
+		,"maxlevel": 45
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0.1
+	},
+		{"id": 41
+		,"name": "Celestial Resonance"
+		,"description": "AP gains increase by total Ascensions. [+1%, +0.17%/lvl, Max lvl: 30]"
+		,"cost": 6
+		,"currency": 10
+		,"costscale": 0
+		,"effectscale": 0.0017
+		,"maxlevel": 30
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0.01
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 42
+		,"name": "Divinity Retention"
+		,"description": "Keeps a fraction of Ascension upgrades after Ascnsion. [5%, +1%/lvl, Max lvl: 15]"
+		,"cost": 8
+		,"currency": 10
+		,"costscale": 0
+		,"effectscale": 0.01
+		,"maxlevel": 15
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0.05
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 43
+		,"name": "Heavenly Influence"
+		,"description": "Increases PP gains based on total AP earned. [+0.05%/1'000, +0.05%/lvl, Max lvl: 30]"
+		,"cost": 10
+		,"currency": 10
+		,"costscale": 0
+		,"effectscale": 0.0005
+		,"maxlevel": 30
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0.0005
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 44
+		,"name": "Divine Wealth"
+		,"description": "Increases Money gain based on lifetime AP earned. [+0.1%/1'000, +0.1%/lvl, Max lvl: 25]"
+		,"cost": 10
+		,"currency": 10
+		,"costscale": 0
+		,"effectscale": 0.001
+		,"maxlevel": 25
+		,"effectlow": 0.001
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 45
+		,"name": "Cosmic Reach"
+		,"description": "Unlocks access to higher-tier currencies after multiple Ascensions. [+1 tier/10 Ascensions]"
+		,"cost": 40
+		,"currency": 11
+		,"costscale": 0
+		,"effectscale": 0
+		,"maxlevel": 4
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 46
+		,"name": "Pantheon synergy"
+		,"description": "AP upgrades become more effective by the total amount of deities unlocked. [+1%/deity, +0.5%/lvl, Max lvl: 50]"
+		,"cost": 15
+		,"currency": 10
+		,"costscale": 0
+		,"effectscale": 0.005
+		,"maxlevel": 50
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0.01
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 47
+		,"name": "Ascended Efficiency"
+		,"description": "Reduces the AP cost of Deity upgrades. [-5%, -1%/lvl, Max lvl: 40]"
+		,"cost": 15
+		,"currency": 10
+		,"costscale": 0
+		,"effectscale": -0.01
+		,"maxlevel": 40
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": -0.05
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 48
+		,"name": "Energized Ascension"
+		,"description": "Short-term production boost after Ascending. [x1.45/60s, +5s/lvl, Max lvl: 20]"
+		,"cost": 20
+		,"currency": 10
+		,"costscale": 0
+		,"effectscale": 5
+		,"maxlevel": 20
+		,"effectlow": 1.45
+		,"effecthigh": 60
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 49
+		,"name": "Persistent Divinity"
+		,"description": "Keep a fraction of PP when Ascending. [5%, +1%/lvl, Max lvl: 30]"
+		,"cost": 18
+		,"currency": 10
+		,"costscale": 0
+		,"effectscale": 0.01
+		,"maxlevel": 30
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0.05
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 50
+		,"name": "Ascension Automation"
+		,"description": "Enables automatic Ascensions once conditions are met."
+		,"cost": 60
+		,"currency": 10
+		,"costscale": 0
+		,"effectscale": 0
+		,"maxlevel": 1
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 51
+		,"name": "Minor sacrifices"
+		,"description": "Resets lower-tier progres (up to and including PP) but grants a production multiplier. [x2 RP/PP/low & high currencies, +0.1/lvl, Max lvl: 15]"
+		,"cost": 5
+		,"currency": 11
+		,"costscale": 0
+		,"effectscale": 0.1
+		,"maxlevel": 15
+		,"effectlow": 2
+		,"effecthigh": 2
+		,"effectre": 2
+		,"effectpre": 2
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 52
+		,"name": "Major sacrifices"
+		,"description": "Unlocks a random deity but resets all previous deities. [Max lvl: 81]"
+		,"cost": 10
+		,"currency": 11
+		,"costscale": 0
+		,"effectscale": 0
+		,"maxlevel": 81
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 53
+		,"name": "Grand Offering"
+		,"description": "Offers all currencies to a single deity for massive buffs. One time per deity. [x5*(10'000/<Money in Platinum>), +0.5/lvl & -2.5% gain, Max lvl: 5]"
+		,"cost": 12
+		,"currency": 11
+		,"costscale": 0
+		,"effectscale": 0.5
+		,"maxlevel": 5
+		,"effectlow": -0.025
+		,"effecthigh": -0.025
+		,"effectre": -0.025
+		,"effectpre": -0.025
+		,"effectasc": -0.025
+		,"effectsac": -0.025
+		,"effectde": 5
+	},
+		{"id": 54
+		,"name": "Void Ritual"
+		,"description": "Destroys a deity, granting dark power at the cost of divine favor for the alignments of the sacrificed deity. [+10% VS & -25% DF, +2% & -5%/lvl, Max lvl: 30]"
+		,"cost": 10
+		,"currency": 11
+		,"costscale": -0.05
+		,"effectscale": 0.02
+		,"maxlevel": 30
+		,"effectlow": 0
+		,"effecthigh": 0.1
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": -0.25
+	},
+		{"id": 55
+		,"name": "Blood Pact"
+		,"description": "Permanently sacrifice a portion of Money gain in exchange for increased AP gain. [-10% Money & +15% AP, -5% & +10%/lvl, Max lvl: 5]"
+		,"cost": 15
+		,"currency": 11
+		,"costscale": -0.05
+		,"effectscale": 0.1
+		,"maxlevel": 5
+		,"effectlow": -0.1
+		,"effecthigh": -0.1
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0.15
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 56
+		,"name": "Celestial Tribute"
+		,"description": "Converts AP into a deity's favour, boosting their effects. [+5%, +1%/lvl, Max lvl: 50]"
+		,"cost": 25
+		,"currency": 11
+		,"costscale": 0
+		,"effectscale": 0.01
+		,"maxlevel": 50
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0.05
+	},
+		{"id": 57
+		,"name": "Pantheon Oath"
+		,"description": "Permanently links two (unlinked) deities, making their effects synergize. [Max lvl: 40]"
+		,"cost": 25
+		,"currency": 11
+		,"costscale": 0
+		,"effectscale": 0
+		,"maxlevel": 40
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 58
+		,"name": "Doomed sacrifice"
+		,"description": "Instantly grants a large sum of resources but disables Sacrifices for a time. [+250% all gains/3min, +5% & +5min cooldown/lvl, Max lvl: 20]"
+		,"cost": 30
+		,"currency": 11
+		,"costscale": 5
+		,"effectscale": 0.05
+		,"maxlevel": 20
+		,"effectlow": 2.5
+		,"effecthigh": 2.5
+		,"effectre": 2.5
+		,"effectpre": 2.5
+		,"effectasc": 2.5
+		,"effectsac": 2.5
+		,"effectde": 5
+	},
+		{"id": 59
+		,"name": "Eternal sacrifice"
+		,"description": "Sacrificing removes lower-tier resources permanently but grants powerful scaling bonuses. [-10% & +0.1%/min, -2% & +0.2%/lvl, Max lvl: 30]"
+		,"cost": 50
+		,"currency": 12
+		,"costscale": -0.02
+		,"effectscale": 0.0002
+		,"maxlevel": 30
+		,"effectlow": -0.1
+		,"effecthigh": -0.1
+		,"effectre": -0.1
+		,"effectpre": -0.1
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0.001
+	},
+		{"id": 60
+		,"name": "Divine Reckoning"
+		,"description": "Sacrifices all previous blessings in exchange for a one-time universal multiplier. [x2, -20% AP & +0.25x/lvl, Max lvl: 5]"
+		,"cost": 50
+		,"currency": 11
+		,"costscale": -0.2
+		,"effectscale": 0.25
+		,"maxlevel": 5
+		,"effectlow": 2
+		,"effecthigh": 2
+		,"effectre": 2
+		,"effectpre": 2
+		,"effectasc": 1.8
+		,"effectsac": 2
+		,"effectde": 2
+	},
+		{"id": 61
+		,"name": "Ancestral Offering"
+		,"description": "Sacrifices some progress to gain passive SP over time. [+1 SP/10min & -17.5% total income, +0.2 SP/lvl, Max lvl: 30]"
+		,"cost": 75
+		,"currency": 11
+		,"costscale": -0.175
+		,"effectscale": 0.2
+		,"maxlevel": 30
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 1
+		,"effectde": 0
+	},
+		{"id": 62
+		,"name": "Fated Descent"
+		,"description": "Resets all progress except SP and Deities, but premanently increases all future production. [x1.5 gain, +0.1/lvl, Max lvl: 15]"
+		,"cost": 100
+		,"currency": 11
+		,"costscale": 0
+		,"effectscale": 0.1
+		,"maxlevel": 15
+		,"effectlow": 1.5
+		,"effecthigh": 1.5
+		,"effectre": 1.5
+		,"effectpre": 1.5
+		,"effectasc": 1.5
+		,"effectsac": 1.5
+		,"effectde": 1.5
+	},
+		{"id": 63
+		,"name": "Pledge of Purity"
+		,"description": "Pledge purity in the face of your deities. Mutually esclusive with Saint Beheading. [+15% favour with compatible deities & -60-100% favour with incompatible deities]"
+		,"cost": 5
+		,"currency": 8
+		,"costscale": 0
+		,"effectscale": 0
+		,"maxlevel": 1
+		,"effectlow": 0.6
+		,"effecthigh": 1
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0.15
+	},
+		{"id": 64
+		,"name": "Celibacy"
+		,"description": "Commit to an oath of celibacy. Mutually exclusive with Saint Beheading. [+30% favour with compatible deities & -80-100% favour with incompatible deities]"
+		,"cost": 5
+		,"currency": 8
+		,"costscale": 0
+		,"effectscale": 0
+		,"maxlevel": 1
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": -0.8
+		,"effectde": 0.3
+	},
+		{"id": 65
+		,"name": "Saint Beheading"
+		,"description": "Behead a saint in the name of your deities. Mutually exclusive with Celibacy and Pledge of Purity. [+5% favour with compatible deities & -85% favour with incompatible deities. +0.02% chance for a saint to run away per ascension cycle, base +1% & +0% & x2/lvl, Max lvl: <Saint count>]"
+		,"cost": 5
+		,"currency": 8
+		,"costscale": 0
+		,"effectscale": 0
+		,"maxlevel": 18446744073709551615
+		,"effectlow": 0.01
+		,"effecthigh": 2
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0.0002
+		,"effectsac": -0.85
+		,"effectde": 0.05
+	},
+		{"id": 66
+		,"name": "Deity Favor"
+		,"description": "Grants bonuses for worshipping a single deity, increasing their effects. [+10%, +2%/lvl, Max lvl: 50]"
+		,"cost": 50
+		,"currency": 12
+		,"costscale": 0
+		,"effectscale": 0.02
+		,"maxlevel": 50
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0.1
+	},
+		{"id": 67
+		,"name": "Deity Rivalry"
+		,"description": "Rival deities reduce each other's effectiveness but provide a (varying) bonus when one is sacrificed. [-15%, -5%/lvl, Max lvl: 30]"
+		,"cost": 75
+		,"currency": 12
+		,"costscale": 0
+		,"effectscale": -0.05
+		,"maxlevel": 30
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": -0.15
+	},
+		{"id": 68
+		,"name": "Deity Blessings"
+		,"description": "Provides a random bonus for a time based on the current deity's favour. [x(1-6)/60s, +10s/lvl, Max lvl: 50]"
+		,"cost": 15
+		,"currency": 5
+		,"costscale": 0
+		,"effectscale": 10
+		,"maxlevel": 50
+		,"effectlow": 1
+		,"effecthigh": 6
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 60
+	},
+		{"id": 69
+		,"name": "Deity Ascension"
+		,"description": "Allows a deity to ascend to a higher power, unlocking new abilities. [Max lvl: 81]"
+		,"cost": 10
+		,"currency": 6
+		,"costscale": 0
+		,"effectscale": 0
+		,"maxlevel": 81
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 70
+		,"name": "Divine Protection"
+		,"description": "Reduces the cost of ascensions and sacrifices by a fraction. [-10%, -2%/lvl, Max lvl: 40]"
+		,"cost": 150
+		,"currency": 12
+		,"costscale": 0
+		,"effectscale": -0.02
+		,"maxlevel": 40
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": -0.1
+		,"effectsac": -0.1
+		,"effectde": 0
+	},
+		{"id": 71
+		,"name": "Celestial Bonds"
+		,"description": "Unlocks synergy between deities, where the effects of one can boost another. if the deities are incompatible, the effect will be the opposite. [+5%, +1%/lvl, Max lvl: 20]"
+		,"cost": 5
+		,"currency": 5
+		,"costscale": 0
+		,"effectscale": 0.01
+		,"maxlevel": 20
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0.05
+	},
+		{"id": 72
+		,"name": "Deity Infusion"
+		,"description": "Fuses the power of two (even fused) deities together, unlocking powerful new hybrid effects. [1 fusion/10 Ascensions, x5 cost & +5 Ascensions/lvl]"
+		,"cost": 15
+		,"currency": 7
+		,"costscale": 5
+		,"effectscale": 5
+		,"maxlevel": 18446744073709551615
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 73
+		,"name": "Pantheon Unity"
+		,"description": "All deities in your pantheon share a portion of their power with each other. [+3%, +1%/lvl, Max lvl: 50]"
+		,"cost": 200
+		,"currency": 12
+		,"costscale": 0
+		,"effectscale": 0.01
+		,"maxlevel": 50
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0.03
+	},
+		{"id": 74
+		,"name": "Divine Influence"
+		,"description": "Allows you to influence which deity becomes the strongest based on your progress. [+5%, +2%/lvl, Max lvl: 40]"
+		,"cost": 10
+		,"currency": 5
+		,"costscale": 0
+		,"effectscale": 0.02
+		,"maxlevel": 40
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0.05
+	},
+		{"id": 75
+		,"name": "Fallen Deity"
+		,"description": "Sacrifice a deity for significant resources but at the cost of losing their blessings. (Once per deity) [+100% PP & -50% DP, +10%/lvl, Max lvl: 81]"
+		,"cost": 10
+		,"currency": 7
+		,"costscale": 0
+		,"effectscale": 0.1
+		,"maxlevel": 81
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 1
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": -0.5
+	},
+		{"id": 76
+		,"name": "Godly Affinity"
+		,"description": "Increases the overall power of deities based on the number of unlocked deities. [+2%, +0.5%/lvl, Max lvl: 50]"
+		,"cost": 20
+		,"currency": 7
+		,"costscale": 0
+		,"effectscale": 0.005
+		,"maxlevel": 50
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0.02
+	},
+		{"id": 77
+		,"name": "Divine Contest"
+		,"description": "Competitions between rival deities for dominance reward you with bonuses for achieving supremacy. [x2 PP/10min on win, +1min/lvl, Max lvl: 20]"
+		,"cost": 20
+		,"currency": 6
+		,"costscale": 10
+		,"effectscale": 1
+		,"maxlevel": 20
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 2
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	},
+		{"id": 78
+		,"name": "Sacred Unity"
+		,"description": "Unlocks cooperative powers between deities, boosting all their effects when together. [+10%, +2%/lvl, Max lvl: 40]"
+		,"cost": 250
+		,"currency": 12
+		,"costscale": 0
+		,"effectscale": 0.02
+		,"maxlevel": 40
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0.1
+	},
+		{"id": 79
+		,"name": "Godly Ascension"
+		,"description": "Permanently increases the power of one deity by a significant amount. [+50%, +5%/lvl, Max lvl: 25]"
+		,"cost": 15
+		,"currency": 6
+		,"costscale": 0
+		,"effectscale": 0.05
+		,"maxlevel": 25
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0.5
+	},
+		{"id": 80
+		,"name": "Divine Entropy"
+		,"description": "Randomly triggers a temporary boost or penalty based on your current deities. [±100%/30s, +5s/lvl, Max lvl: 20]"
+		,"cost": 5
+		,"currency": 7
+		,"costscale": 30
+		,"effectscale": 5
+		,"maxlevel": 20
+		,"effectlow": 0
+		,"effecthigh": 0
+		,"effectre": 0
+		,"effectpre": 0
+		,"effectasc": 0
+		,"effectsac": 0
+		,"effectde": 0
+	}
+]
