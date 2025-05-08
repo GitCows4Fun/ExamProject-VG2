@@ -193,18 +193,7 @@ namespace ExamProject
         }),
         new SectionInfo("Currency Upgrades", new List<ButtonInfo>
         {
-            new ButtonInfo("Basic Copper Mining",
-            "Unlocks basic Copper mining techniques, increasing production." +
-			"\n" +
-            "\n" +
-            "Effect: +10% Copper production." +
-			"\n" +
-            "Scaling: Each level adds +5% Copper production." +
-			"\n" +
-            "Max Level: 50" +
-            "\n" +
-			"\n" +
-            "Cost: 1 silver"),
+            new ButtonInfo("Basic Copper Mining", "Cost: 1 silver"),
 
             new ButtonInfo("Enhanced Copper Refinement",    
 			"Cost: 10 copper."),
