@@ -140,16 +140,6 @@ namespace ExamProject
 			}
 		}
 
-		private int DietVal
-		{
-			get => _dietValue;
-			set
-			{
-				_dietValue = value;
-				OnPropertyChanged(nameof());
-			}
-		}
-
 		// Implement INotifyPropertiesChanged
 		public event PropertyChangedEventHandler? PropertyChanged;
 		private void OnPropertyChanged([CallerMemberName] string propertyName = "")
