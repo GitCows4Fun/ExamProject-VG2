@@ -295,48 +295,676 @@ namespace ExamProject
             }
         }
 
-
-
-
-
-        private void Btn_Multipliers(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void Btn_Rebirths(object sender, RoutedEventArgs e)
         {
+            // Clear previous UI
+            content.Children.Clear();
+            content.RowDefinitions.Clear();
+            content.ColumnDefinitions.Clear();
 
+            // Sample data: 3 sections, each with its own buttons
+            var sections = new List<SectionInfo>
+    {
+        new SectionInfo("Rebirths", new List<ButtonInfo>
+        {
+            new ButtonInfo("Rebirth!!!",   "Click the button to gain one rebirth."),
+        }),
+        new SectionInfo("RP Upgrades", new List<ButtonInfo>
+        {
+            new ButtonInfo("Hyper Growth",   "Cost: 50 copper"),
+            new ButtonInfo("Rebirth Efficiency",   "Cost: 1 silver"),
+            new ButtonInfo("Recursive Growth",   "Cost: 1 silver"),
+            new ButtonInfo("Second Wind",   "Cost: 1 silver"),
+            new ButtonInfo("Momentum Stacking",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Overflow",   "Cost: 1 silver"),
+            new ButtonInfo("Compounding Returns",   "Cost: 1 silver"),
+            new ButtonInfo("Exponential Surge",   "Cost: 1 silver"),
+            new ButtonInfo("Legacy Carryover",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Synergy",   "Cost: 1 silver"),
+            new ButtonInfo("Energized Rebirths",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Efficiency II",   "Cost: 1 silver"),
+            new ButtonInfo("Persistent Momentum",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Automation",   "Cost: 1 silver"),
+        }),
+        // …add more sections as you like
+    };
+
+            // 3) Build Grid: one column per section
+            foreach (var _ in sections)
+                content.ColumnDefinitions.Add(new ColumnDefinition());
+
+            // 2 rows: headers + content
+            content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+
+            // 4) Populate each section
+            for (int col = 0; col < sections.Count; col++)
+            {
+                var section = sections[col];
+
+                // 4a) Header label
+                var headerLabel = new TextBlock
+                {
+                    Text = section.Header,
+                    FontWeight = FontWeights.Bold,
+                    Margin = new Thickness(5),
+                    HorizontalAlignment = HorizontalAlignment.Center
+                };
+                Grid.SetRow(headerLabel, 0);
+                Grid.SetColumn(headerLabel, col);
+                content.Children.Add(headerLabel);
+
+                // 4b) Container for buttons
+                var stack = new StackPanel
+                {
+                    Orientation = Orientation.Vertical,
+                    Margin = new Thickness(5),
+                    VerticalAlignment = VerticalAlignment.Top
+                };
+
+                // 4c) Create each button in this section
+                foreach (var info in section.Buttons)
+                {
+                    var btn = new Button
+                    {
+                        Content = info.Name,
+                        ToolTip = info.Tooltip,
+                        Margin = new Thickness(2),
+                        Width = 120,
+                        Height = 30
+                    };
+
+                    // Hook up click event!
+                    Console.Write("Event works?");
+                    if (info.Name == "Collect Coins")
+                    {
+                        btn.Click += (s, args) => MonValue += 1;
+                        Console.Write("Money Value Increased +N");
+                    }
+
+                    stack.Children.Add(btn);
+                }
+
+                Grid.SetRow(stack, 1);
+                Grid.SetColumn(stack, col);
+                content.Children.Add(stack);
+            }
         }
 
         private void Btn_Prestiges(object sender, RoutedEventArgs e)
         {
+            // Clear previous UI
+            content.Children.Clear();
+            content.RowDefinitions.Clear();
+            content.ColumnDefinitions.Clear();
 
+            // Sample data: 3 sections, each with its own buttons
+            var sections = new List<SectionInfo>
+    {
+        new SectionInfo("Prestiges", new List<ButtonInfo>
+        {
+            new ButtonInfo("Rebirth!!!",   "Click the button to gain one rebirth."),
+        }),
+        new SectionInfo("RP Upgrades", new List<ButtonInfo>
+        {
+            new ButtonInfo("Hyper Growth",   "Cost: 50 copper"),
+            new ButtonInfo("Rebirth Efficiency",   "Cost: 1 silver"),
+            new ButtonInfo("Recursive Growth",   "Cost: 1 silver"),
+            new ButtonInfo("Second Wind",   "Cost: 1 silver"),
+            new ButtonInfo("Momentum Stacking",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Overflow",   "Cost: 1 silver"),
+            new ButtonInfo("Compounding Returns",   "Cost: 1 silver"),
+            new ButtonInfo("Exponential Surge",   "Cost: 1 silver"),
+            new ButtonInfo("Legacy Carryover",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Synergy",   "Cost: 1 silver"),
+            new ButtonInfo("Energized Rebirths",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Efficiency II",   "Cost: 1 silver"),
+            new ButtonInfo("Persistent Momentum",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Automation",   "Cost: 1 silver"),
+        }),
+        // …add more sections as you like
+    };
+
+            // 3) Build Grid: one column per section
+            foreach (var _ in sections)
+                content.ColumnDefinitions.Add(new ColumnDefinition());
+
+            // 2 rows: headers + content
+            content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+
+            // 4) Populate each section
+            for (int col = 0; col < sections.Count; col++)
+            {
+                var section = sections[col];
+
+                // 4a) Header label
+                var headerLabel = new TextBlock
+                {
+                    Text = section.Header,
+                    FontWeight = FontWeights.Bold,
+                    Margin = new Thickness(5),
+                    HorizontalAlignment = HorizontalAlignment.Center
+                };
+                Grid.SetRow(headerLabel, 0);
+                Grid.SetColumn(headerLabel, col);
+                content.Children.Add(headerLabel);
+
+                // 4b) Container for buttons
+                var stack = new StackPanel
+                {
+                    Orientation = Orientation.Vertical,
+                    Margin = new Thickness(5),
+                    VerticalAlignment = VerticalAlignment.Top
+                };
+
+                // 4c) Create each button in this section
+                foreach (var info in section.Buttons)
+                {
+                    var btn = new Button
+                    {
+                        Content = info.Name,
+                        ToolTip = info.Tooltip,
+                        Margin = new Thickness(2),
+                        Width = 120,
+                        Height = 30
+                    };
+
+                    // Hook up click event!
+                    Console.Write("Event works?");
+                    if (info.Name == "Collect Coins")
+                    {
+                        btn.Click += (s, args) => MonValue += 1;
+                        Console.Write("Money Value Increased +N");
+                    }
+
+                    stack.Children.Add(btn);
+                }
+
+                Grid.SetRow(stack, 1);
+                Grid.SetColumn(stack, col);
+                content.Children.Add(stack);
+            }
         }
 
         private void Btn_Ascentions(object sender, RoutedEventArgs e)
         {
+            // Clear previous UI
+            content.Children.Clear();
+            content.RowDefinitions.Clear();
+            content.ColumnDefinitions.Clear();
 
+            // Sample data: 3 sections, each with its own buttons
+            var sections = new List<SectionInfo>
+    {
+        new SectionInfo("Ascentions", new List<ButtonInfo>
+        {
+            new ButtonInfo("Rebirth!!!",   "Click the button to gain one rebirth."),
+        }),
+        new SectionInfo("RP Upgrades", new List<ButtonInfo>
+        {
+            new ButtonInfo("Hyper Growth",   "Cost: 50 copper"),
+            new ButtonInfo("Rebirth Efficiency",   "Cost: 1 silver"),
+            new ButtonInfo("Recursive Growth",   "Cost: 1 silver"),
+            new ButtonInfo("Second Wind",   "Cost: 1 silver"),
+            new ButtonInfo("Momentum Stacking",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Overflow",   "Cost: 1 silver"),
+            new ButtonInfo("Compounding Returns",   "Cost: 1 silver"),
+            new ButtonInfo("Exponential Surge",   "Cost: 1 silver"),
+            new ButtonInfo("Legacy Carryover",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Synergy",   "Cost: 1 silver"),
+            new ButtonInfo("Energized Rebirths",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Efficiency II",   "Cost: 1 silver"),
+            new ButtonInfo("Persistent Momentum",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Automation",   "Cost: 1 silver"),
+        }),
+        // …add more sections as you like
+    };
+
+            // 3) Build Grid: one column per section
+            foreach (var _ in sections)
+                content.ColumnDefinitions.Add(new ColumnDefinition());
+
+            // 2 rows: headers + content
+            content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+
+            // 4) Populate each section
+            for (int col = 0; col < sections.Count; col++)
+            {
+                var section = sections[col];
+
+                // 4a) Header label
+                var headerLabel = new TextBlock
+                {
+                    Text = section.Header,
+                    FontWeight = FontWeights.Bold,
+                    Margin = new Thickness(5),
+                    HorizontalAlignment = HorizontalAlignment.Center
+                };
+                Grid.SetRow(headerLabel, 0);
+                Grid.SetColumn(headerLabel, col);
+                content.Children.Add(headerLabel);
+
+                // 4b) Container for buttons
+                var stack = new StackPanel
+                {
+                    Orientation = Orientation.Vertical,
+                    Margin = new Thickness(5),
+                    VerticalAlignment = VerticalAlignment.Top
+                };
+
+                // 4c) Create each button in this section
+                foreach (var info in section.Buttons)
+                {
+                    var btn = new Button
+                    {
+                        Content = info.Name,
+                        ToolTip = info.Tooltip,
+                        Margin = new Thickness(2),
+                        Width = 120,
+                        Height = 30
+                    };
+
+                    // Hook up click event!
+                    Console.Write("Event works?");
+                    if (info.Name == "Collect Coins")
+                    {
+                        btn.Click += (s, args) => MonValue += 1;
+                        Console.Write("Money Value Increased +N");
+                    }
+
+                    stack.Children.Add(btn);
+                }
+
+                Grid.SetRow(stack, 1);
+                Grid.SetColumn(stack, col);
+                content.Children.Add(stack);
+            }
         }
 
         private void Btn_Sacrifices(object sender, RoutedEventArgs e)
         {
+            // Clear previous UI
+            content.Children.Clear();
+            content.RowDefinitions.Clear();
+            content.ColumnDefinitions.Clear();
 
+            // Sample data: 3 sections, each with its own buttons
+            var sections = new List<SectionInfo>
+    {
+        new SectionInfo("Sacrifices", new List<ButtonInfo>
+        {
+            new ButtonInfo("Rebirth!!!",   "Click the button to gain one rebirth."),
+        }),
+        new SectionInfo("RP Upgrades", new List<ButtonInfo>
+        {
+            new ButtonInfo("Hyper Growth",   "Cost: 50 copper"),
+            new ButtonInfo("Rebirth Efficiency",   "Cost: 1 silver"),
+            new ButtonInfo("Recursive Growth",   "Cost: 1 silver"),
+            new ButtonInfo("Second Wind",   "Cost: 1 silver"),
+            new ButtonInfo("Momentum Stacking",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Overflow",   "Cost: 1 silver"),
+            new ButtonInfo("Compounding Returns",   "Cost: 1 silver"),
+            new ButtonInfo("Exponential Surge",   "Cost: 1 silver"),
+            new ButtonInfo("Legacy Carryover",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Synergy",   "Cost: 1 silver"),
+            new ButtonInfo("Energized Rebirths",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Efficiency II",   "Cost: 1 silver"),
+            new ButtonInfo("Persistent Momentum",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Automation",   "Cost: 1 silver"),
+        }),
+        // …add more sections as you like
+    };
+
+            // 3) Build Grid: one column per section
+            foreach (var _ in sections)
+                content.ColumnDefinitions.Add(new ColumnDefinition());
+
+            // 2 rows: headers + content
+            content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+
+            // 4) Populate each section
+            for (int col = 0; col < sections.Count; col++)
+            {
+                var section = sections[col];
+
+                // 4a) Header label
+                var headerLabel = new TextBlock
+                {
+                    Text = section.Header,
+                    FontWeight = FontWeights.Bold,
+                    Margin = new Thickness(5),
+                    HorizontalAlignment = HorizontalAlignment.Center
+                };
+                Grid.SetRow(headerLabel, 0);
+                Grid.SetColumn(headerLabel, col);
+                content.Children.Add(headerLabel);
+
+                // 4b) Container for buttons
+                var stack = new StackPanel
+                {
+                    Orientation = Orientation.Vertical,
+                    Margin = new Thickness(5),
+                    VerticalAlignment = VerticalAlignment.Top
+                };
+
+                // 4c) Create each button in this section
+                foreach (var info in section.Buttons)
+                {
+                    var btn = new Button
+                    {
+                        Content = info.Name,
+                        ToolTip = info.Tooltip,
+                        Margin = new Thickness(2),
+                        Width = 120,
+                        Height = 30
+                    };
+
+                    // Hook up click event!
+                    Console.Write("Event works?");
+                    if (info.Name == "Collect Coins")
+                    {
+                        btn.Click += (s, args) => MonValue += 1;
+                        Console.Write("Money Value Increased +N");
+                    }
+
+                    stack.Children.Add(btn);
+                }
+
+                Grid.SetRow(stack, 1);
+                Grid.SetColumn(stack, col);
+                content.Children.Add(stack);
+            }
         }
 
         private void Btn_Deities(object sender, RoutedEventArgs e)
         {
+            // Clear previous UI
+            content.Children.Clear();
+            content.RowDefinitions.Clear();
+            content.ColumnDefinitions.Clear();
 
+            // Sample data: 3 sections, each with its own buttons
+            var sections = new List<SectionInfo>
+    {
+        new SectionInfo("Deities", new List<ButtonInfo>
+        {
+            new ButtonInfo("Rebirth!!!",   "Click the button to gain one rebirth."),
+        }),
+        new SectionInfo("RP Upgrades", new List<ButtonInfo>
+        {
+            new ButtonInfo("Hyper Growth",   "Cost: 50 copper"),
+            new ButtonInfo("Rebirth Efficiency",   "Cost: 1 silver"),
+            new ButtonInfo("Recursive Growth",   "Cost: 1 silver"),
+            new ButtonInfo("Second Wind",   "Cost: 1 silver"),
+            new ButtonInfo("Momentum Stacking",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Overflow",   "Cost: 1 silver"),
+            new ButtonInfo("Compounding Returns",   "Cost: 1 silver"),
+            new ButtonInfo("Exponential Surge",   "Cost: 1 silver"),
+            new ButtonInfo("Legacy Carryover",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Synergy",   "Cost: 1 silver"),
+            new ButtonInfo("Energized Rebirths",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Efficiency II",   "Cost: 1 silver"),
+            new ButtonInfo("Persistent Momentum",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Automation",   "Cost: 1 silver"),
+        }),
+        // …add more sections as you like
+    };
+
+            // 3) Build Grid: one column per section
+            foreach (var _ in sections)
+                content.ColumnDefinitions.Add(new ColumnDefinition());
+
+            // 2 rows: headers + content
+            content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+
+            // 4) Populate each section
+            for (int col = 0; col < sections.Count; col++)
+            {
+                var section = sections[col];
+
+                // 4a) Header label
+                var headerLabel = new TextBlock
+                {
+                    Text = section.Header,
+                    FontWeight = FontWeights.Bold,
+                    Margin = new Thickness(5),
+                    HorizontalAlignment = HorizontalAlignment.Center
+                };
+                Grid.SetRow(headerLabel, 0);
+                Grid.SetColumn(headerLabel, col);
+                content.Children.Add(headerLabel);
+
+                // 4b) Container for buttons
+                var stack = new StackPanel
+                {
+                    Orientation = Orientation.Vertical,
+                    Margin = new Thickness(5),
+                    VerticalAlignment = VerticalAlignment.Top
+                };
+
+                // 4c) Create each button in this section
+                foreach (var info in section.Buttons)
+                {
+                    var btn = new Button
+                    {
+                        Content = info.Name,
+                        ToolTip = info.Tooltip,
+                        Margin = new Thickness(2),
+                        Width = 120,
+                        Height = 30
+                    };
+
+                    // Hook up click event!
+                    Console.Write("Event works?");
+                    if (info.Name == "Collect Coins")
+                    {
+                        btn.Click += (s, args) => MonValue += 1;
+                        Console.Write("Money Value Increased +N");
+                    }
+
+                    stack.Children.Add(btn);
+                }
+
+                Grid.SetRow(stack, 1);
+                Grid.SetColumn(stack, col);
+                content.Children.Add(stack);
+            }
         }
 
         private void Btn_Saints(object sender, RoutedEventArgs e)
         {
+            // Clear previous UI
+            content.Children.Clear();
+            content.RowDefinitions.Clear();
+            content.ColumnDefinitions.Clear();
 
+            // Sample data: 3 sections, each with its own buttons
+            var sections = new List<SectionInfo>
+    {
+        new SectionInfo("Saints", new List<ButtonInfo>
+        {
+            new ButtonInfo("Rebirth!!!",   "Click the button to gain one rebirth."),
+        }),
+        new SectionInfo("RP Upgrades", new List<ButtonInfo>
+        {
+            new ButtonInfo("Hyper Growth",   "Cost: 50 copper"),
+            new ButtonInfo("Rebirth Efficiency",   "Cost: 1 silver"),
+            new ButtonInfo("Recursive Growth",   "Cost: 1 silver"),
+            new ButtonInfo("Second Wind",   "Cost: 1 silver"),
+            new ButtonInfo("Momentum Stacking",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Overflow",   "Cost: 1 silver"),
+            new ButtonInfo("Compounding Returns",   "Cost: 1 silver"),
+            new ButtonInfo("Exponential Surge",   "Cost: 1 silver"),
+            new ButtonInfo("Legacy Carryover",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Synergy",   "Cost: 1 silver"),
+            new ButtonInfo("Energized Rebirths",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Efficiency II",   "Cost: 1 silver"),
+            new ButtonInfo("Persistent Momentum",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Automation",   "Cost: 1 silver"),
+        }),
+        // …add more sections as you like
+    };
+
+            // 3) Build Grid: one column per section
+            foreach (var _ in sections)
+                content.ColumnDefinitions.Add(new ColumnDefinition());
+
+            // 2 rows: headers + content
+            content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+
+            // 4) Populate each section
+            for (int col = 0; col < sections.Count; col++)
+            {
+                var section = sections[col];
+
+                // 4a) Header label
+                var headerLabel = new TextBlock
+                {
+                    Text = section.Header,
+                    FontWeight = FontWeights.Bold,
+                    Margin = new Thickness(5),
+                    HorizontalAlignment = HorizontalAlignment.Center
+                };
+                Grid.SetRow(headerLabel, 0);
+                Grid.SetColumn(headerLabel, col);
+                content.Children.Add(headerLabel);
+
+                // 4b) Container for buttons
+                var stack = new StackPanel
+                {
+                    Orientation = Orientation.Vertical,
+                    Margin = new Thickness(5),
+                    VerticalAlignment = VerticalAlignment.Top
+                };
+
+                // 4c) Create each button in this section
+                foreach (var info in section.Buttons)
+                {
+                    var btn = new Button
+                    {
+                        Content = info.Name,
+                        ToolTip = info.Tooltip,
+                        Margin = new Thickness(2),
+                        Width = 120,
+                        Height = 30
+                    };
+
+                    // Hook up click event!
+                    Console.Write("Event works?");
+                    if (info.Name == "Collect Coins")
+                    {
+                        btn.Click += (s, args) => MonValue += 1;
+                        Console.Write("Money Value Increased +N");
+                    }
+
+                    stack.Children.Add(btn);
+                }
+
+                Grid.SetRow(stack, 1);
+                Grid.SetColumn(stack, col);
+                content.Children.Add(stack);
+            }
         }
 
         private void Btn_GenStat(object sender, RoutedEventArgs e)
         {
+            // Clear previous UI
+            content.Children.Clear();
+            content.RowDefinitions.Clear();
+            content.ColumnDefinitions.Clear();
 
+            // Sample data: 3 sections, each with its own buttons
+            var sections = new List<SectionInfo>
+    {
+        new SectionInfo("Rebirths", new List<ButtonInfo>
+        {
+            new ButtonInfo("Rebirth!!!",   "Click the button to gain one rebirth."),
+        }),
+        new SectionInfo("RP Upgrades", new List<ButtonInfo>
+        {
+            new ButtonInfo("Hyper Growth",   "Cost: 50 copper"),
+            new ButtonInfo("Rebirth Efficiency",   "Cost: 1 silver"),
+            new ButtonInfo("Recursive Growth",   "Cost: 1 silver"),
+            new ButtonInfo("Second Wind",   "Cost: 1 silver"),
+            new ButtonInfo("Momentum Stacking",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Overflow",   "Cost: 1 silver"),
+            new ButtonInfo("Compounding Returns",   "Cost: 1 silver"),
+            new ButtonInfo("Exponential Surge",   "Cost: 1 silver"),
+            new ButtonInfo("Legacy Carryover",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Synergy",   "Cost: 1 silver"),
+            new ButtonInfo("Energized Rebirths",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Efficiency II",   "Cost: 1 silver"),
+            new ButtonInfo("Persistent Momentum",   "Cost: 1 silver"),
+            new ButtonInfo("Rebirth Automation",   "Cost: 1 silver"),
+        }),
+        // …add more sections as you like
+    };
+
+            // 3) Build Grid: one column per section
+            foreach (var _ in sections)
+                content.ColumnDefinitions.Add(new ColumnDefinition());
+
+            // 2 rows: headers + content
+            content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            content.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+
+            // 4) Populate each section
+            for (int col = 0; col < sections.Count; col++)
+            {
+                var section = sections[col];
+
+                // 4a) Header label
+                var headerLabel = new TextBlock
+                {
+                    Text = section.Header,
+                    FontWeight = FontWeights.Bold,
+                    Margin = new Thickness(5),
+                    HorizontalAlignment = HorizontalAlignment.Center
+                };
+                Grid.SetRow(headerLabel, 0);
+                Grid.SetColumn(headerLabel, col);
+                content.Children.Add(headerLabel);
+
+                // 4b) Container for buttons
+                var stack = new StackPanel
+                {
+                    Orientation = Orientation.Vertical,
+                    Margin = new Thickness(5),
+                    VerticalAlignment = VerticalAlignment.Top
+                };
+
+                // 4c) Create each button in this section
+                foreach (var info in section.Buttons)
+                {
+                    var btn = new Button
+                    {
+                        Content = info.Name,
+                        ToolTip = info.Tooltip,
+                        Margin = new Thickness(2),
+                        Width = 120,
+                        Height = 30
+                    };
+
+                    // Hook up click event!
+                    Console.Write("Event works?");
+                    if (info.Name == "Collect Coins")
+                    {
+                        btn.Click += (s, args) => MonValue += 1;
+                        Console.Write("Money Value Increased +N");
+                    }
+
+                    stack.Children.Add(btn);
+                }
+
+                Grid.SetRow(stack, 1);
+                Grid.SetColumn(stack, col);
+                content.Children.Add(stack);
+            }
         }
     }
 }

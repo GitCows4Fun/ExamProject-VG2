@@ -16,8 +16,6 @@
             <!-- Sidebar-Buttons -->
             <!-- Money -->
             <Button Content="Money" Click="Btn_Money" Height="30"/>
-            <!-- MultiVal -->
-            <Button Content="Multipliers" Click="Btn_Multipliers" Height="30"/>
             <!-- RPVal -->
             <Button Content="Rebirths" Click="Btn_Rebirths" Height="30"/>
             <!-- PPVal -->
