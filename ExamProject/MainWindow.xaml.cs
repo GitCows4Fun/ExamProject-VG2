@@ -195,8 +195,25 @@ namespace ExamProject
         {
             new ButtonInfo("Basic Copper Mining", "Cost: 1 silver"),
 
-            new ButtonInfo("Enhanced Copper Refinement",    
-			"Cost: 10 copper."),
+            new ButtonInfo(
+            "Enhanced Copper Refinement",
+            "Cost: 25 copper.",
+            () =>
+            {
+                const int cost = 25;
+                if (MonValue >= cost)
+                {
+                    MonValue -= cost;
+                    // TODO: apply the actual upgrade effect here,
+                    // e.g. Increase some production multiplier or level counter.
+                }
+                else
+                {
+                    MessageBox.Show("Not enough copper!", "Insufficient Funds",
+                                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+        ),
             new ButtonInfo("Copper Efficiency",    
 			"Cost: 10 copper."),
             new ButtonInfo("Advanced Copper Extraction",    
