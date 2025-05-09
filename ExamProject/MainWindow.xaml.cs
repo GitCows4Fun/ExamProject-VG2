@@ -280,12 +280,10 @@ namespace ExamProject
                         Height = 30
                     };
 
-					// Hook up click event!
-					Console.Write("Event works?");
-                    if (info.Name == "Collect Coins")
+                    // Hook up click event!
+                    if (info.OnClick != null)
                     {
-                        btn.Click += (s, args) => MonValue += 1;
-                        Console.Write("Money Value Increased +N");
+                        btn.Click += (s, args) => info.OnClick.Invoke();
                     }
 
                     stack.Children.Add(btn);
@@ -377,11 +375,9 @@ namespace ExamProject
                     };
 
                     // Hook up click event!
-                    Console.Write("Event works?");
-                    if (info.Name == "Collect Coins")
+                    if (info.OnClick != null)
                     {
-                        btn.Click += (s, args) => MonValue += 1;
-                        Console.Write("Money Value Increased +N");
+                        btn.Click += (s, args) => info.OnClick.Invoke();
                     }
 
                     stack.Children.Add(btn);
@@ -473,11 +469,9 @@ namespace ExamProject
                     };
 
                     // Hook up click event!
-                    Console.Write("Event works?");
-                    if (info.Name == "Collect Coins")
+                    if (info.OnClick != null)
                     {
-                        btn.Click += (s, args) => MonValue += 1;
-                        Console.Write("Money Value Increased +N");
+                        btn.Click += (s, args) => info.OnClick.Invoke();
                     }
 
                     stack.Children.Add(btn);
@@ -569,11 +563,9 @@ namespace ExamProject
                     };
 
                     // Hook up click event!
-                    Console.Write("Event works?");
-                    if (info.Name == "Collect Coins")
+                    if (info.OnClick != null)
                     {
-                        btn.Click += (s, args) => MonValue += 1;
-                        Console.Write("Money Value Increased +N");
+                        btn.Click += (s, args) => info.OnClick.Invoke();
                     }
 
                     stack.Children.Add(btn);
@@ -665,11 +657,9 @@ namespace ExamProject
                     };
 
                     // Hook up click event!
-                    Console.Write("Event works?");
-                    if (info.Name == "Collect Coins")
+                    if (info.OnClick != null)
                     {
-                        btn.Click += (s, args) => MonValue += 1;
-                        Console.Write("Money Value Increased +N");
+                        btn.Click += (s, args) => info.OnClick.Invoke();
                     }
 
                     stack.Children.Add(btn);
@@ -761,11 +751,9 @@ namespace ExamProject
                     };
 
                     // Hook up click event!
-                    Console.Write("Event works?");
-                    if (info.Name == "Collect Coins")
+                    if (info.OnClick != null)
                     {
-                        btn.Click += (s, args) => MonValue += 1;
-                        Console.Write("Money Value Increased +N");
+                        btn.Click += (s, args) => info.OnClick.Invoke();
                     }
 
                     stack.Children.Add(btn);
@@ -857,11 +845,9 @@ namespace ExamProject
                     };
 
                     // Hook up click event!
-                    Console.Write("Event works?");
-                    if (info.Name == "Collect Coins")
+                    if (info.OnClick != null)
                     {
-                        btn.Click += (s, args) => MonValue += 1;
-                        Console.Write("Money Value Increased +N");
+                        btn.Click += (s, args) => info.OnClick.Invoke();
                     }
 
                     stack.Children.Add(btn);
@@ -953,13 +939,11 @@ namespace ExamProject
                     };
 
                     // Hook up click event!
-                    Console.Write("Event works?");
-                    if (info.Name == "Collect Coins")
+                    if (info.OnClick != null)
                     {
-                        btn.Click += (s, args) => MonValue += 1;
-                        Console.Write("Money Value Increased +N");
+                        btn.Click += (s, args) => info.OnClick.Invoke();
                     }
-					stack.Children.Add(btn);
+                    stack.Children.Add(btn);
 				}
 
 				Grid.SetRow(stack, 1);
