@@ -109,31 +109,13 @@ namespace ExamProject
             }
         }
 
-        public void UpdateDataGrid(JToken currentToken)
-        {
-            if (currentToken is JArray array)
-            {
-                JsonData = JsonParser.ParseJArray(array);
-            }
-            else if (currentToken is JObject obj)
-            {
-                JsonData = new List<Dictionary<string, object>>()
-                {
-                    JsonParser.ParseJsonObject(obj)
-                };
-            }
-            else
-            {
-                JsonData = null;
-            }
-        }
-
         public void UpdateTreeView(JToken currentNode, TreeViewItem parent = null)
         {
             TreeViewItem newTreeViewItem = new TreeViewItem();
             newTreeViewItem.Header = currentNode.ToString(Formatting.None);
             newTreeViewItem.Tag = currentNode;
 
+            // Handle nested objects
             if (currentNode is JObject jsonObject)
             {
                 foreach (var prop in jsonObject.Properties())
@@ -147,6 +129,25 @@ namespace ExamProject
             }
 
             parent?.Items.Add(newTreeViewItem);
+        }
+
+        public void UpdateDataGrid(JToken currentToken)
+        {
+            if (currentToken is JArray array)
+            {
+                JsonData = JsonParser.ParseJArray(array);
+            }
+            else if (currentToken is JObject obj)
+            {
+                JsonData = new List<Dictionary<string, object>>()
+        {
+            JsonParser.ParseJsonObject(obj)
+        };
+            }
+            else
+            {
+                JsonData = null;
+            }
         }
     }
 }

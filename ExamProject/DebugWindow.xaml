@@ -8,8 +8,18 @@
         Title="JSON Data Debugger" Height="600" Width="1000">
     <DockPanel LastChildFill="True">
         <!-- TreeView -->
-        <TreeView Name="TreeView" DockPanel.Dock="Left" Width="250" Margin="5"
-              SelectedItemChanged="TreeView_SelectedValueChanged"/>
+        <TreeView 
+    Name="TreeView" 
+    DockPanel.Dock="Left" 
+    Width="250" 
+    Margin="5"
+    SelectedItemChanged="TreeView_SelectedValueChanged">
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Setter Property="IsExpanded" Value="True"/>
+                </Style>
+            </TreeView.ItemContainerStyle>
+        </TreeView>
 
         <!-- Command Terminal -->
         <GroupBox DockPanel.Dock="Bottom" Header="Command Terminal" Margin="5">

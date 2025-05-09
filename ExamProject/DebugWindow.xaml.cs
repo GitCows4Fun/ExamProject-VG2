@@ -13,13 +13,21 @@ namespace ExamProject
         {
             InitializeComponent();
 
-            // Initialize the DataHandler and set it as the DataContext
-            _dataHandler = new ViewModel();
+            _dataHandler = new DataHandler();
             DataContext = _dataHandler;
             _dataHandler.InitializeViews(DataGrid);
 
-            // Load initial JSON data
-            _dataHandler.LoadJsonData(JSON_FILE_PATH.upgrades);
+            // Load initial JSON data and populate the TreeView
+            JArray initialData = JsonParser.ReadJsonFromFile(JSON_FILE_PATH.upgrades);
+            _dataHandler.UpdateTreeView(initialData[0], TreeView.Items.Add(CreateRootNode(initialData)));
+        }
+
+        private TreeViewItem CreateRootNode(JToken node)
+        {
+            TreeViewItem rootNode = new TreeViewItem();
+            rootNode.Header = "Root";
+            rootNode.Tag = node;
+            return rootNode;
         }
 
         private void CommandInput_TextChanged(object sender, TextChangedEventArgs e)
@@ -83,10 +91,7 @@ namespace ExamProject
             if (selectedTreeViewItem == null) return;
 
             // Get the current node from the TreeViewItem's DataContext
-            var currentNode = selectedTreeViewItem.DataContext;
-
-            // Ensure that the current node is a JToken before proceeding
-            if (currentNode is JToken jToken)
+            if (selectedTreeViewItem.DataContext is JToken currentNode)
             {
                 // Push the previous node to the navigation history
                 if (_dataHandler.CurrentSelectedItem != null)
@@ -98,18 +103,8 @@ namespace ExamProject
                 _dataHandler.CurrentSelectedItem = selectedTreeViewItem;
 
                 // Update the TreeView and DataGrid with the current JToken
-                _dataHandler.UpdateTreeView(jToken);
-                _dataHandler.UpdateDataGrid(jToken);
-            }
-            else
-            {
-                // Handle the case where the node is not a JToken
-                MessageBox.Show(
-                    "The selected item does not contain valid JSON data.",
-                    "Invalid Data",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Warning
-                );
+                _dataHandler.UpdateTreeView(currentNode);
+                _dataHandler.UpdateDataGrid(currentNode);
             }
         }
     }
