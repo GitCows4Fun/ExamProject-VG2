@@ -17,7 +17,6 @@ namespace ExamProject
 
             _dataHandler = new ViewModel();
 			DataContext = _dataHandler;
-			_dataHandler.InitializeViews(DataGrid);
 
             // Load initial JSON data and populate the TreeView
             JArray initialData = JsonParser.ReadJsonFromFile(JSON_FILE_PATH.upgrades);
@@ -95,29 +94,6 @@ namespace ExamProject
 							"- refresh: Reloads the JSON data.\n" +
 							"- back: Navigates back to the previous view.";
 			MessageBox.Show(helpText, "Command Help");
-		}
-
-        private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            var selectedTreeViewItem = sender as TreeViewItem;
-            if (selectedTreeViewItem == null) return;
-
-            // Get the current node from the TreeViewItem's DataContext
-            if (selectedTreeViewItem.DataContext is JToken currentNode)
-			{
-				// Push the previous node to the navigation history
-				if (_dataHandler.CurrentSelectedItem != null)
-				{
-					_dataHandler.NavigationHistory.Push(_dataHandler.CurrentSelectedItem.DataContext as JToken);
-				}
-
-				// Update the current selected item in DataHandler
-				_dataHandler.CurrentSelectedItem = selectedTreeViewItem;
-
-				// Update the TreeView and DataGrid with the current JToken
-				_dataHandler.UpdateTreeView(currentNode, selectedTreeViewItem);
-				_dataHandler.UpdateDataGrid(currentNode);
-			}
 		}
 	}
 }
