@@ -13,26 +13,26 @@
 			<!-- Content Area -->
 		</Grid.ColumnDefinitions>
 
-        <!-- Sidebar with Buttons -->
-        <StackPanel Grid.Column="0">
+		<!-- Sidebar with Buttons -->
+		<StackPanel Grid.Column="0">
 
-            <!-- Sidebar-Buttons -->
-            <!-- Money -->
-            <Button Content="Money" Click="Btn_Money" Height="30"/>
-            <!-- RPVal -->
-            <Button Content="Rebirths" Click="Btn_Rebirths" Height="30"/>
-            <!-- PPVal -->
-            <Button Content="Prestiges" Click="Btn_Prestiges" Height="30"/>
-            <!-- APVal -->
-            <Button Content="Ascensions" Click="Btn_Ascentions" Height="30"/>
-            <!-- SacVal -->
-            <Button Content="Sacrifices" Click="Btn_Sacrifices" Height="30"/>
-            <!-- DietiyVal -->
-            <Button Content="Deities" Click="Btn_Deities" Height="30"/>
-            <!-- SaintsVal -->
-            <Button Content="Saints" Click="Btn_Saints" Height="30"/>
-            <!-- General Stats -->
-            <Button Content="General Stats" Click="Btn_GenStat" Height="30"/>
+			<!-- Sidebar-Buttons -->
+			<!-- Money -->
+			<Button Content="Money" Click="Btn_Money" Height="30"/>
+			<!-- RPVal -->
+			<Button Content="Rebirths" Click="Btn_Rebirths" Height="30"/>
+			<!-- PPVal -->
+			<Button Content="Prestiges" Click="Btn_Prestiges" Height="30"/>
+			<!-- APVal -->
+			<Button Content="Ascensions" Click="Btn_Ascentions" Height="30"/>
+			<!-- SacVal -->
+			<Button Content="Sacrifices" Click="Btn_Sacrifices" Height="30"/>
+			<!-- DietiyVal -->
+			<Button Content="Deities" Click="Btn_Deities" Height="30"/>
+			<!-- SaintsVal -->
+			<Button Content="Saints" Click="Btn_Saints" Height="30"/>
+			<!-- General Stats -->
+			<Button Content="General Stats" Click="Btn_GenStat" Height="30"/>
 
 			<!-- Stat_Stackpanels -->
 			<StackPanel Height="156" Orientation="Horizontal">
@@ -58,24 +58,24 @@
 				</StackPanel>
 
 
-            </StackPanel>
+			</StackPanel>
 
-            <!-- Labels For Sidebar-Buttons -->
-        </StackPanel>
+			<!-- Labels For Sidebar-Buttons -->
+		</StackPanel>
 
-        <!-- Dynamic Content Area -->
-        <Grid x:Name="content" Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5*"/>
-                <ColumnDefinition Width="5*"/>
-                <ColumnDefinition Width="5*"/>
-                <ColumnDefinition Width="5*"/>
-                <ColumnDefinition Width="5*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="209*"/>
-                <RowDefinition Height="8*"/>
-            </Grid.RowDefinitions>
-        </Grid>
-    </Grid>
+		<!-- Dynamic Content Area -->
+		<Grid x:Name="content" Grid.Column="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="5*"/>
+				<ColumnDefinition Width="5*"/>
+				<ColumnDefinition Width="5*"/>
+				<ColumnDefinition Width="5*"/>
+				<ColumnDefinition Width="5*"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="209*"/>
+				<RowDefinition Height="8*"/>
+			</Grid.RowDefinitions>
+		</Grid>
+	</Grid>
 </Window>
