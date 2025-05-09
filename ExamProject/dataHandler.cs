@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
-using DynamicJsonParsing;
+using ExamProject;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace DynamicJsonParsing
+namespace ExamProject 
 {
 	public class JsonParser
 	{

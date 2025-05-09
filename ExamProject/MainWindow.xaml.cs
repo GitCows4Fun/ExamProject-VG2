@@ -9,13 +9,14 @@ using System.Diagnostics; // For Stopwatch and/or debugging later
 using System.Threading;   // For Thread 
 //using DataImport;
 using System.Reflection.Metadata;
+using System.Windows.Input;
 
 
 namespace ExamProject
 {
 	public partial class MainWindow : Window, INotifyPropertyChanged
 	{
-		public string db_ip;
+        public string db_ip;
 		public string db_port;
 
 		private int _monValue = 0;
@@ -70,10 +71,31 @@ namespace ExamProject
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 		{
 			InitializeComponent();
+            this.KeyUp += debug_KeyUp;
+            this.Closed += MainWindowClosed;
 
-			// Set the DataContext to this window itself so that the binding in XAML can find these properties.
-			DataContext = this;
+            // Set the DataContext to this window itself so that the binding in XAML can find these properties.
+            DataContext = this;
 		}
+
+        public Window debugWindow;
+
+        private void debug_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.D)
+            {
+                DebugWindow debugWindow = new DebugWindow();
+                debugWindow.Show();
+            }
+        }
+
+        private void MainWindowClosed(object sender, EventArgs e)
+        {
+            if (debugWindow != null)
+            {
+                debugWindow.Close();
+            }
+        }
 
         // The binds between the lables MonValue and the var _values
         public int MonValue
