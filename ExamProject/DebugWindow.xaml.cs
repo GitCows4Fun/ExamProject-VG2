@@ -1,78 +1,116 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Windows;
-using Newtonsoft.Json;
+﻿using System.Windows;
+using System.Windows.Controls;
+using ExamProject;
 using Newtonsoft.Json.Linq;
 
 namespace ExamProject
 {
-	public partial class DebugWindow : Window
-	{
+    public partial class DebugWindow : Window
+    {
+        private ViewModel _dataHandler;
 
-		private class JSON_FILE_PATH
-		{
-			public static string upgrades { get; set; } = @"../../upgrades.json";
-		};
+        public DebugWindow()
+        {
+            InitializeComponent();
 
-		public DebugWindow()
-		{
-			InitializeComponent();
-			LoadJsonData();
-		}
+            // Initialize the DataHandler and set it as the DataContext
+            _dataHandler = new ViewModel();
+            DataContext = _dataHandler;
+            _dataHandler.InitializeViews(DataGrid);
 
-		private void LoadJsonData()
-		{
-			try
-			{
-				string jsonContent = File.ReadAllText(JSON_FILE_PATH.upgrades);
-				dynamic jsonData = JsonConvert.DeserializeObject(jsonContent);
+            // Load initial JSON data
+            _dataHandler.LoadJsonData(JSON_FILE_PATH.upgrades);
+        }
 
-				if (jsonData is JArray jsonArray)
-				{
-					List<Dictionary<string, object>> dataToList = ConvertJArrayToList(jsonArray);
-					DataGrid.ItemsSource = dataToList;
-				}
-				else if (jsonData is JObject jsonObject)
-				{
-					// Handle single object case if needed
-					List<Dictionary<string, object>> singleItem = new List<Dictionary<string, object>>();
-					singleItem.Add(JsonConvert.DeserializeObject<Dictionary<string, object>>(JsonConvert.SerializeObject(jsonObject)));
-					DataGrid.ItemsSource = singleItem;
-				}
-				else
-				{
-					MessageBox.Show("The JSON content is neither an array nor an object.");
-				}
-			}
-			catch (FileNotFoundException)
-			{
-				MessageBox.Show("The JSON file was not found."); 
-			}
-			catch (JsonException ex)
-			{
-				MessageBox.Show($"Error parsing JSON: {ex.Message}"); 
+        private void CommandInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textBox = sender as TextBox;
+            if (textBox == null) return;
+
+            if (textBox.Text.EndsWith("\n") || textBox.Text.EndsWith("\r\n"))
+            {
+                string command = textBox.Text.Trim();
+                ProcessCommand(command);
+                AddToCommandHistory(command);
+                textBox.Text = "";
             }
-			catch (Exception ex)
-			{
-				MessageBox.Show($"An error occurred: {ex.Message}"); 
-            }
-		}
+        }
 
-		private List<Dictionary<string, object>> ConvertJArrayToList(JArray jArray)
-		{
-			List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
-			foreach (JObject obj in jArray)
-			{
-				Dictionary<string, object> dict = new Dictionary<string, object>();
-				foreach (var prop in obj.Properties())
-				{
-					dict[prop.Name] = prop.Value.ToObject<object>();
-				}
-				list.Add(dict);
-				// Handle nested structures if necessary
-			}
-			return list;
-		}
-	}
+        private void ProcessCommand(string command)
+        {
+            if (string.IsNullOrWhiteSpace(command)) return;
+
+            switch (command.ToLower())
+            {
+                case "help":
+                    ShowHelp();
+                    break;
+                case "refresh":
+                    _dataHandler.LoadJsonData(JSON_FILE_PATH.upgrades);
+                    break;
+                case "back":
+                    if (_dataHandler.NavigationHistory.Count > 0)
+                    {
+                        var previousNode = _dataHandler.NavigationHistory.Pop();
+                        _dataHandler.UpdateTreeView(previousNode);
+                        _dataHandler.UpdateDataGrid(previousNode);
+                    }
+                    break;
+                default:
+                    MessageBox.Show("Unknown command. Type 'help' for available commands.");
+                    break;
+            }
+        }
+
+        private void AddToCommandHistory(string command)
+        {
+            CommandHistory.Items.Add($"{DateTime.Now:HH:mm:ss} > {command}");
+            CommandHistory.SelectedIndex = CommandHistory.Items.Count - 1;
+        }
+
+        private void ShowHelp()
+        {
+            string helpText = "Available Commands:\n" +
+                            "- help: Displays available commands.\n" +
+                            "- refresh: Reloads the JSON data.\n" +
+                            "- back: Navigates back to the previous view.";
+            MessageBox.Show(helpText, "Command Help");
+        }
+
+        private void TreeView_SelectedValueChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedTreeViewItem = sender as TreeViewItem;
+            if (selectedTreeViewItem == null) return;
+
+            // Get the current node from the TreeViewItem's DataContext
+            var currentNode = selectedTreeViewItem.DataContext;
+
+            // Ensure that the current node is a JToken before proceeding
+            if (currentNode is JToken jToken)
+            {
+                // Push the previous node to the navigation history
+                if (_dataHandler.CurrentSelectedItem != null)
+                {
+                    _dataHandler.NavigationHistory.Push(_dataHandler.CurrentSelectedItem.DataContext as JToken);
+                }
+
+                // Update the current selected item in DataHandler
+                _dataHandler.CurrentSelectedItem = selectedTreeViewItem;
+
+                // Update the TreeView and DataGrid with the current JToken
+                _dataHandler.UpdateTreeView(jToken);
+                _dataHandler.UpdateDataGrid(jToken);
+            }
+            else
+            {
+                // Handle the case where the node is not a JToken
+                MessageBox.Show(
+                    "The selected item does not contain valid JSON data.",
+                    "Invalid Data",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning
+                );
+            }
+        }
+    }
 }

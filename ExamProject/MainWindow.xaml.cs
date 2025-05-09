@@ -7,7 +7,6 @@ using System.Windows.Controls;
 using System.Collections.Generic;
 using System.Diagnostics; // For Stopwatch and/or debugging later 
 using System.Threading;   // For Thread 
-//using DataImport;
 using System.Reflection.Metadata;
 using System.Windows.Input;
 
@@ -66,36 +65,35 @@ namespace ExamProject
 		//	}
 		//}
 
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 		public MainWindow()
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 		{
 			InitializeComponent();
-            this.KeyUp += debug_KeyUp;
-            this.Closed += MainWindowClosed;
+            //this.KeyUp += debug_KeyUp;
+            //this.Closed += MainWindowClosed;
 
             // Set the DataContext to this window itself so that the binding in XAML can find these properties.
             DataContext = this;
 		}
 
-        public Window debugWindow;
+        //public Window debugWindow;
 
-        private void debug_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.D)
-            {
-                DebugWindow debugWindow = new DebugWindow();
-                debugWindow.Show();
-            }
-        }
+        //private void debug_KeyUp(object sender, KeyEventArgs e)
+        //{
+        //    if (e.Key == Key.D)
+        //    {
+        //        DebugWindow debugWindow = new DebugWindow();
+        //        debugWindow.Owner = this; // Set the owner of the debug window to the main window 
+        //        debugWindow.Show();
+        //    }
+        //}
 
-        private void MainWindowClosed(object sender, EventArgs e)
-        {
-            if (debugWindow != null)
-            {
-                debugWindow.Close();
-            }
-        }
+        //private void MainWindowClosed(object sender, EventArgs e)
+        //{
+        //    if (debugWindow != null)
+        //    {
+        //        debugWindow.Close();
+        //    }
+        //}
 
         // The binds between the lables MonValue and the var _values
         public int MonValue

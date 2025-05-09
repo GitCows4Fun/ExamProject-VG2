@@ -1,72 +1,152 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
-using ExamProject;
+using System.Windows;
+using System.Windows.Controls;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace ExamProject 
+namespace ExamProject
 {
-	public class JsonParser
-	{
-		public static JArray ReadJsonFromFile(string filePath)
-		{
-			try
-			{
-				// Read the JSON content from the specified file
-				string json = File.ReadAllText(filePath);
+    public class JSON_FILE_PATH
+    {
+        public static string upgrades { get; set; } = @"../../../data/upgrades.json";
+    }
 
-				// Parse the JSON into a dynamic JArray
-				return JArray.Parse(json);
-			}
-			catch (FileNotFoundException ex)
-			{
-				throw new FileNotFoundException("The JSON file was not found.", ex);
-			}
-			catch (JsonException ex)
-			{
-				throw new ArgumentException("The file does not contain valid JSON data.", ex);
-			}
-			catch (Exception ex)
-			{
-				throw new Exception("An error occurred while reading the JSON file.", ex);
-			}
-		}
+    public static class JsonParser
+    {
+        public static JArray ReadJsonFromFile(string filePath)
+        {
+            try
+            {
+                string json = File.ReadAllText(filePath);
+                return JArray.Parse(json);
+            }
+            catch (FileNotFoundException ex)
+            {
+                throw new FileNotFoundException("The JSON file was not found.", ex);
+            }
+            catch (JsonException ex)
+            {
+                throw new ArgumentException("The file does not contain valid JSON data.", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while reading the JSON file.", ex);
+            }
+        }
 
-		//public static void ProcessJsonData()
-		//{
-		//	string filePath = @"C:\path\to\your\file.json"; // JSON file path
+        public static Dictionary<string, object> ParseJsonObject(JObject obj)
+        {
+            Dictionary<string, object> dict = new Dictionary<string, object>();
+            foreach (var prop in obj.Properties())
+            {
+                dict[prop.Name] = prop.Value.ToObject<object>();
+            }
+            return dict;
+        }
 
-		//	try
-		//	{
-		//		// Call the ReadJsonFromFile method to get the parsed JSON data
-		//		JArray jsonData = JsonParser.ReadJsonFromFile(filePath);
+        public static List<Dictionary<string, object>> ParseJArray(JArray array)
+        {
+            List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
+            foreach (JObject obj in array)
+            {
+                list.Add(ParseJsonObject(obj));
+            }
+            return list;
+        }
+    }
 
-		//		// Iterate over each item in the JSON array
-		//		foreach (JObject item in jsonData)
-		//		{
-		//			// Access properties dynamically and write them to constants :3 (TBD) 
-		//			Console.WriteLine("ID: " + item["id"].ToString());
-		//			Console.WriteLine("Name: " + item["name"].ToString());
-		//			Console.WriteLine("Lore: " + item["lore"].ToString());
+    public class ViewModel : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
 
-		//			// Access nested structures if available
-		//			if (item["unlocks"] != null)
-		//			{
-		//				JArray unlocks = (JArray)item["unlocks"];
-		//				Console.WriteLine("Unlocks:");
-		//				foreach (JObject unlock in unlocks)
-		//				{
-		//					Console.WriteLine("- ID: " + unlock["id"].ToString());
-		//					Console.WriteLine("- Description: " + unlock["desc"].ToString());
-		//				}
-		//			}
-		//			Console.WriteLine("\n");
-		//		}
-		//	}
-		//	catch (Exception ex)
-		//	{
-		//		Console.WriteLine("An error occurred: " + ex.Message);
-		//	}
-		//}
-	}
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private List<Dictionary<string, object>> _jsonData;
+        public List<Dictionary<string, object>> JsonData
+        {
+            get => _jsonData;
+            set
+            {
+                _jsonData = value;
+                OnPropertyChanged(nameof(JsonData));
+            }
+        }
+
+        private DataGrid _dataGrid;
+        private TreeViewItem _currentSelectedItem;
+        private Stack<object> _navigationHistory = new Stack<object>();
+
+        public Stack<object> NavigationHistory { get => _navigationHistory; }
+        public TreeViewItem CurrentSelectedItem { get => _currentSelectedItem; set => _currentSelectedItem = value; }
+
+        public void InitializeViews(DataGrid dataGrid)
+        {
+            _dataGrid = dataGrid;
+        }
+
+        public void LoadJsonData(string filePath)
+        {
+            try
+            {
+                if (!File.Exists(filePath))
+                {
+                    throw new FileNotFoundException("The JSON file was not found.");
+                }
+
+                JArray jsonData = JsonParser.ReadJsonFromFile(filePath);
+                JsonData = JsonParser.ParseJArray(jsonData);
+                _dataGrid.ItemsSource = JsonData;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}");
+            }
+        }
+
+        public void UpdateDataGrid(JToken currentToken)
+        {
+            if (currentToken is JArray array)
+            {
+                JsonData = JsonParser.ParseJArray(array);
+            }
+            else if (currentToken is JObject obj)
+            {
+                JsonData = new List<Dictionary<string, object>>()
+                {
+                    JsonParser.ParseJsonObject(obj)
+                };
+            }
+            else
+            {
+                JsonData = null;
+            }
+        }
+
+        public void UpdateTreeView(JToken currentNode, TreeViewItem parent = null)
+        {
+            TreeViewItem newTreeViewItem = new TreeViewItem();
+            newTreeViewItem.Header = currentNode.ToString(Formatting.None);
+            newTreeViewItem.Tag = currentNode;
+
+            if (currentNode is JObject jsonObject)
+            {
+                foreach (var prop in jsonObject.Properties())
+                {
+                    UpdateTreeView(prop.Value, newTreeViewItem);
+                }
+            }
+            else if (currentNode is JArray jsonArray)
+            {
+                UpdateTreeView(jsonArray[0], newTreeViewItem);
+            }
+
+            parent?.Items.Add(newTreeViewItem);
+        }
+    }
 }
