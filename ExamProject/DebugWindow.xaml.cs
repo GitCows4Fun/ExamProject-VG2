@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using ExamProject;
 using Newtonsoft.Json.Linq;
 using System.Windows.Input;
+using System.Windows.Controls.Primitives;
 
 namespace ExamProject
 {
@@ -71,8 +72,7 @@ namespace ExamProject
 					if (_dataHandler.NavigationHistory.Count > 0)
 					{
 						var previousNode = _dataHandler.NavigationHistory.Pop();
-						_dataHandler.UpdateTreeView((JToken)previousNode);
-						_dataHandler.UpdateDataGrid((JToken)previousNode);
+						_dataHandler.UpdateTreeView((JToken)previousNode, CreateRootNode((JToken)previousNode));
 					}
 					break;
 				default:
@@ -95,5 +95,5 @@ namespace ExamProject
 							"- back: Navigates back to the previous view.";
 			MessageBox.Show(helpText, "Command Help");
 		}
-	}
+    }
 }

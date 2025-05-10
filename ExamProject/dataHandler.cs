@@ -83,11 +83,6 @@ namespace ExamProject
 		public Stack<object> NavigationHistory { get => _navigationHistory; }
 		public TreeViewItem CurrentSelectedItem { get => _currentSelectedItem; set => _currentSelectedItem = value; }
 
-		public void InitializeViews(DataGrid dataGrid)
-		{
-			_dataGrid = dataGrid;
-		}
-
 		public void LoadJsonData(string filePath)
 		{
 			try
@@ -99,7 +94,6 @@ namespace ExamProject
 
 				JArray jsonData = JsonParser.ReadJsonFromFile(filePath);
 				JsonData = JsonParser.ParseJArray(jsonData);
-				_dataGrid.ItemsSource = JsonData;
 			}
 			catch (Exception ex)
 			{
@@ -151,61 +145,42 @@ namespace ExamProject
         }
 
         private void UpdateChildren(JToken childNode, TreeViewItem parentItem)
-{
-    if (childNode is JObject objChild)
-    {
-        // Handle nested objects
-        foreach (var prop in objChild.Properties())
-        {
-            TreeViewItem propItem = new TreeViewItem();
-            propItem.Header = $"{prop.Name}: {prop.Value}";
-            propItem.Tag = prop.Value;
-
-            UpdateChildren(prop.Value, propItem);
-
-            parentItem.Items.Add(propItem);
-        }
-    }
-    else if (childNode is JArray arrChild)
-    {
-        // Handle nested arrays
-        for (int i = 0; i < arrChild.Count; i++)
-        {
-            TreeViewItem arrItem = new TreeViewItem();
-            arrItem.Header = $"[{i}]: {arrChild[i].ToString(Formatting.None)}";
-            arrItem.Tag = arrChild[i];
-
-            UpdateChildren(arrChild[i], arrItem);
-
-            parentItem.Items.Add(arrItem);
-        }
-    }
-    else
-    {
-        TreeViewItem leafNode = new TreeViewItem();
-        leafNode.Header = childNode.ToString(Formatting.None);
-        leafNode.Tag = childNode;
-        parentItem.Items.Add(leafNode);
-    }
-}
-
-        public void UpdateDataGrid(JToken currentToken)
 		{
-			if (currentToken is JArray array)
-			{
-				JsonData = JsonParser.ParseJArray(array);
-			}
-			else if (currentToken is JObject obj)
-			{
-				JsonData = new List<Dictionary<string, object>>()
-		{
-			JsonParser.ParseJsonObject(obj)
-		};
-			}
-			else
-			{
-				JsonData = null;
-			}
+		    if (childNode is JObject objChild)
+		    {
+		        // Handle nested objects
+		        foreach (var prop in objChild.Properties())
+		        {
+		            TreeViewItem propItem = new TreeViewItem();
+		            propItem.Header = $"{prop.Name}: {prop.Value}";
+		            propItem.Tag = prop.Value;
+		
+		            UpdateChildren(prop.Value, propItem);
+		
+		            parentItem.Items.Add(propItem);
+		        }
+		    }
+		    else if (childNode is JArray arrChild)
+		    {
+		        // Handle nested arrays
+		        for (int i = 0; i < arrChild.Count; i++)
+		        {
+		            TreeViewItem arrItem = new TreeViewItem();
+		            arrItem.Header = $"[{i}]: {arrChild[i].ToString(Formatting.None)}";
+		            arrItem.Tag = arrChild[i];
+		
+		            UpdateChildren(arrChild[i], arrItem);
+		
+		            parentItem.Items.Add(arrItem);
+		        }
+		    }
+		    else
+		    {
+		        TreeViewItem leafNode = new TreeViewItem();
+		        leafNode.Header = childNode.ToString(Formatting.None);
+		        leafNode.Tag = childNode;
+		        parentItem.Items.Add(leafNode);
+		    }
 		}
 	}
 }

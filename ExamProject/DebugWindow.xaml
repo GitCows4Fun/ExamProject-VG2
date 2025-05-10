@@ -5,13 +5,17 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:ExamProject"
 		mc:Ignorable="d"
-		Title="JSON Data Debugger" Height="600" Width="1000">
-	<DockPanel LastChildFill="True">
+		Title="Admin Window" MinHeight="600" MinWidth="1000">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="250" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
 		<!-- TreeView -->
 		<TreeView 
-			Name="TreeView" 
-			DockPanel.Dock="Left" 
-			Width="250" 
+			Name="TreeView"
+			Grid.Column="0"
 			Margin="5">
 			<TreeView.ItemContainerStyle>
 				<Style TargetType="{x:Type TreeViewItem}">
@@ -19,25 +23,31 @@
 				</Style>
 			</TreeView.ItemContainerStyle>
 		</TreeView>
-
+		<!-- GridSplitter for resizing -->
+		<GridSplitter
+			Grid.Column="1"
+			Width="10"
+			HorizontalAlignment="Stretch"
+			Background="White"
+			Cursor="SizeWE" />
 		<!-- Command Terminal -->
-        <GroupBox DockPanel.Dock="Right" Header="Command Terminal" Margin="5">
-            <Grid>
-                <TextBox Name="CommandInput"
-					TextChanged="CommandInput_TextChanged"
-					Background="Black"
-					Foreground="White"
-					Grid.Column="0"
-					Margin="5"
-					Padding="5"
-					AcceptsReturn="True"/>
-                <ListBox Name="CommandHistory"
-					Background="Black"
-					Foreground="White"
-					Grid.Column="1"
-					Margin="5"
-					Padding="5"/>
-            </Grid>
-        </GroupBox>
-    </DockPanel>
+		<GroupBox Grid.Column="2" Header="Command Terminal" Margin="5" MinWidth="300">
+			<Grid>
+				<ListBox Name="CommandHistory"
+						Background="Black"
+						Foreground="White"
+						Grid.Column="1"
+						Margin="5"
+						Padding="5"/>
+				<TextBox Name="CommandInput"
+						TextChanged="CommandInput_TextChanged"
+						Background="Black"
+						Foreground="White"
+						Grid.Column="0"
+						Margin="5"
+						Padding="5"
+						AcceptsReturn="True"/>
+			</Grid>
+		</GroupBox>
+	</Grid>
 </Window>
