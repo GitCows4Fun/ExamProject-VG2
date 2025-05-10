@@ -1,0 +1,84 @@
+[
+	{
+		"lowCurrency": 
+		[
+			{
+				"id": 0,
+				"value": 1,
+				"valuePrev": 1,
+				"name": "Copper"
+			},{
+				"id": 1,
+				"value": 100,
+				"valuePrev": 100,
+				"name": "Silver"
+			},{
+				"id": 2,
+				"value": 10000,
+				"valuePrev": 100,
+				"name": "Gold"
+			},{
+				"id": 3,
+				"value": 1000000,
+				"valuePrev": 100,
+				"name": "Platinum"
+			},{
+				"id": 4,
+				"value": 1000000000,
+				"valuePrev": 1000,
+				"name": "Diamonds"
+			}
+		],
+		"highCurrency":
+		[
+			{
+				"id": 5,
+				"value": 1,
+				"valuePrev": 100,
+				"name": "Essence"
+			},{
+				"id": 6,
+				"value": 100,
+				"valuePrev": 100,
+				"name": "Void Shards"
+			},{
+				"id": 7,
+				"value": 100000,
+				"valuePrev": 100,
+				"name": "Stardust"
+			},{
+				"id": 8,
+				"value": 100000000,
+				"valuePrev": 100,
+				"name": "Aether"
+			}
+		],
+		"specialCurrency":
+		[
+			{
+				"id": 9,
+				"value": 1,
+				"valuePrev": 10000,
+				"name": "Rebirth Points"
+			},{
+				"id": 10,
+				"value": 1000,
+				"valuePrev": 1000,
+				"name": "Prestige Points"
+			},{
+				"id": 11,
+				"value": 1000000,
+				"valuePrev": 1000,
+				"name": "Ascension Points"
+			},{
+				"id": 12,
+				"value": 1000000000,
+				"valuePrev": 1000,
+				"name": "Sacrifice Points"
+			}
+		]
+	},
+	{
+
+	}
+]

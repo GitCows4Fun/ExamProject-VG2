@@ -9,7 +9,12 @@ namespace ExamProject
 {
 	public class JSON_FILE_PATH
 	{
-		public static string upgrades { get; set; } = @"../../../data/upgrades.json";
+#pragma warning disable IDE1006
+		public static string saveLocation { get; } = @"../../../data/saves/";
+        public static string upgrades { get; } = @"../../../data/upgrades.json";
+		public static string gameData { get; } = @"../../../data/gd.json";
+		public static string currentTreeviewLoaded { get; set; } = upgrades;
+#pragma warning restore IDE1006
 	}
 
 	public static class JsonParser
@@ -54,7 +59,20 @@ namespace ExamProject
 			}
 			return list;
 		}
-	}
+
+        public static void SaveJsonToFile(JArray jsonData)
+        {
+            try
+            {
+                string json = jsonData.ToString(Formatting.Indented);
+                File.WriteAllText("", json);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while saving the JSON file.", ex);
+            }
+        }
+    }
 
 	public class ViewModel : INotifyPropertyChanged
 	{
@@ -75,13 +93,9 @@ namespace ExamProject
 				OnPropertyChanged(nameof(JsonData));
 			}
 		}
-
-		private DataGrid _dataGrid;
-		private TreeViewItem _currentSelectedItem;
 		private Stack<object> _navigationHistory = new Stack<object>();
 
 		public Stack<object> NavigationHistory { get => _navigationHistory; }
-		public TreeViewItem CurrentSelectedItem { get => _currentSelectedItem; set => _currentSelectedItem = value; }
 
 		public void LoadJsonData(string filePath)
 		{
@@ -94,6 +108,7 @@ namespace ExamProject
 
 				JArray jsonData = JsonParser.ReadJsonFromFile(filePath);
 				JsonData = JsonParser.ParseJArray(jsonData);
+				JSON_FILE_PATH.currentTreeviewLoaded = filePath;
 			}
 			catch (Exception ex)
 			{
@@ -101,86 +116,93 @@ namespace ExamProject
 			}
 		}
 
-        public void UpdateTreeView(JToken node, TreeViewItem parent = null)
-        {
-            if (node == null || parent == null)
-            {
-                return;
-            }
-
-            if (node is JObject)
-            {
-                foreach (var prop in ((JObject)node).Properties())
-                {
-                    TreeViewItem propItem = new TreeViewItem();
-                    propItem.Header = $"{prop.Name}: {prop.Value}";
-                    propItem.Tag = prop.Value;
-                    parent.Items.Add(propItem);
-                    UpdateTreeView(prop.Value, propItem);
-                }
-            }
-            else if (node is JArray)
-            {
-                for (int i = 0; i < ((JArray)node).Count; i++)
-                {
-                    JToken item = ((JArray)node)[i];
-                    TreeViewItem itemNode = new TreeViewItem();
-                    itemNode.Header = $"Item {i}";
-                    itemNode.Tag = item;
-                    parent.Items.Add(itemNode);
-
-                    // Add child nodes for the item's properties
-                    if (item is JObject itemObj)
-                    {
-                        foreach (var prop in itemObj.Properties())
-                        {
-                            TreeViewItem propItem = new TreeViewItem();
-                            propItem.Header = $"{prop.Name}: {prop.Value}";
-                            propItem.Tag = prop.Value;
-                            itemNode.Items.Add(propItem);
-                        }
-                    }
-                }
-            }
-        }
-
-        private void UpdateChildren(JToken childNode, TreeViewItem parentItem)
+		public void UpdateTreeView(JToken node, TreeViewItem parent = null)
 		{
-		    if (childNode is JObject objChild)
-		    {
-		        // Handle nested objects
-		        foreach (var prop in objChild.Properties())
-		        {
-		            TreeViewItem propItem = new TreeViewItem();
-		            propItem.Header = $"{prop.Name}: {prop.Value}";
-		            propItem.Tag = prop.Value;
-		
-		            UpdateChildren(prop.Value, propItem);
-		
-		            parentItem.Items.Add(propItem);
-		        }
-		    }
-		    else if (childNode is JArray arrChild)
-		    {
-		        // Handle nested arrays
-		        for (int i = 0; i < arrChild.Count; i++)
-		        {
-		            TreeViewItem arrItem = new TreeViewItem();
-		            arrItem.Header = $"[{i}]: {arrChild[i].ToString(Formatting.None)}";
-		            arrItem.Tag = arrChild[i];
-		
-		            UpdateChildren(arrChild[i], arrItem);
-		
-		            parentItem.Items.Add(arrItem);
-		        }
-		    }
-		    else
-		    {
-		        TreeViewItem leafNode = new TreeViewItem();
-		        leafNode.Header = childNode.ToString(Formatting.None);
-		        leafNode.Tag = childNode;
-		        parentItem.Items.Add(leafNode);
-		    }
+			if (node == null || parent == null)
+			{
+				return;
+			}
+
+			if (node is JObject)
+			{
+				foreach (var prop in ((JObject)node).Properties())
+				{
+					TreeViewItem propItem = new TreeViewItem();
+					propItem.Header = $"{prop.Name}: {prop.Value}";
+					propItem.Tag = prop.Value;
+					parent.Items.Add(propItem);
+					UpdateTreeView(prop.Value, propItem);
+				}
+			}
+			else if (node is JArray)
+			{
+				for (int i = 0; i < ((JArray)node).Count; i++)
+				{
+					JToken item = ((JArray)node)[i];
+					TreeViewItem itemNode = new TreeViewItem();
+					itemNode.Header = $"Item {i}";
+					itemNode.Tag = item;
+					parent.Items.Add(itemNode);
+
+					// Add child nodes for the item's properties
+					if (item is JObject itemObj)
+					{
+						foreach (var prop in itemObj.Properties())
+						{
+							TreeViewItem propItem = new TreeViewItem();
+							propItem.Header = $"{prop.Name}: {prop.Value}";
+							propItem.Tag = prop.Value;
+							itemNode.Items.Add(propItem);
+						}
+					}
+				}
+			}
 		}
+
+		private void UpdateChildren(JToken childNode, TreeViewItem parentItem)
+		{
+			if (childNode is JObject objChild)
+			{
+				// Handle nested objects
+				foreach (var prop in objChild.Properties())
+				{
+					TreeViewItem propItem = new TreeViewItem();
+					propItem.Header = $"{prop.Name}: {prop.Value}";
+					propItem.Tag = prop.Value;
+		
+					UpdateChildren(prop.Value, propItem);
+		
+					parentItem.Items.Add(propItem);
+				}
+			}
+			else if (childNode is JArray arrChild)
+			{
+				// Handle nested arrays
+				for (int i = 0; i < arrChild.Count; i++)
+				{
+					TreeViewItem arrItem = new TreeViewItem();
+					arrItem.Header = $"[{i}]: {arrChild[i].ToString(Formatting.None)}";
+					arrItem.Tag = arrChild[i];
+		
+					UpdateChildren(arrChild[i], arrItem);
+		
+					parentItem.Items.Add(arrItem);
+				}
+			}
+			else
+			{
+				TreeViewItem leafNode = new TreeViewItem();
+				leafNode.Header = childNode.ToString(Formatting.None);
+				leafNode.Tag = childNode;
+				parentItem.Items.Add(leafNode);
+			}
+		}
+	}
+
+	public class SaveToJSON
+	{
+
+
+		string SaveData = JsonConvert.SerializeObject("");
 	}
 }
