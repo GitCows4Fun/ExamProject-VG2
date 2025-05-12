@@ -203,7 +203,7 @@ namespace ExamProject
                 const int cost = 25;
                 if (MonValue >= cost)
                 {
-                    MonValue -= cost;
+                    MonValue = MonValue - cost;
                     // TODO: apply the actual upgrade effect here,
                     // e.g. Increase some production multiplier or level counter.
                 }
