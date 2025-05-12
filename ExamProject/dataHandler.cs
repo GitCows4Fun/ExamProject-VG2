@@ -1,166 +1,208 @@
-﻿using System.Text.Json;
-using System.Diagnostics;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using System.Text.RegularExpressions;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System;
+﻿using System.ComponentModel;
 using System.IO;
-using System.Threading.Tasks;
-using ExamProject;
+using System.Windows;
+using System.Windows.Controls;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-namespace DataImport
+namespace ExamProject
 {
-
-	public class Upgrades
+	public class JSON_FILE_PATH
 	{
-		public int Id { get; set; }
-		public string? Name { get; set; }
-		public string? Description { get; set; }
-		public int Cost { get; set; }
-		public int Currency { get; set; }
-		public double CostScale { get; set; }
-		public double EffectScale { get; set; }
-		public int MaxLevel { get; set; }
-		public double EffectLow { get; set; }
-		public double EffectHigh { get; set; }
-		public double EffectRe { get; set; }
-		public double EffectPre { get; set; }
-		public double EffectAsc { get; set; }
-		public double EffectSac { get; set; }
-		public double EffectDe { get; set; }
+#pragma warning disable IDE1006
+		public static string saveLocation { get; } = @"../../../data/saves/";
+        public static string upgrades { get; } = @"../../../data/upgrades.json";
+		public static string gameData { get; } = @"../../../data/gd.json";
+		public static string currentTreeviewLoaded { get; set; } = upgrades;
+#pragma warning restore IDE1006
 	}
 
-	public class DataHandler
+	public static class JsonParser
 	{
-#pragma warning disable CS1998
-#pragma warning disable CS1822
-		// This is what will initially load the base values to be used from variousjson files in the appropriate folder 
-		public async Task InitializeBaseValues()
-		{
-
-		}
-
-		private string? jsonFilePath;
-		private IMongoCollection<BsonDocument>? mongoCollection;
-		public ObservableCollection<Upgrades> Upgrades { get; set; } = new ObservableCollection<Upgrades>();
-
-		public DataHandler(string jsonFilePath)
-		{
-			this.jsonFilePath = jsonFilePath;
-		}
-
-		private async Task LoadFromMongoDB(string db_ip, string db_port, string databaseName, string collectionName, string documentName)
+		public static JArray ReadJsonFromFile(string filePath)
 		{
 			try
 			{
-				if (Regex.IsMatch(db_ip, @"^(?:localhost|\d{1,3}(?:\.\d{1,3}){3})(?::\d+)?$") && !string.IsNullOrEmpty(db_port))
-				{
-					Debug.WriteLine("mongodb path is valid: match = " + Regex.Match(db_ip + ":" + db_port, @"^(?:[\d\.]+|localhost):\d+$"));
-					var client = new MongoClient("mongodb://" + db_ip + ":" + db_port);
-					if (!string.IsNullOrEmpty(databaseName) && databaseName != "Database" &&
-						!string.IsNullOrEmpty(collectionName) && collectionName != "Collection")
-					{
-						var database = client.GetDatabase(databaseName);
-						mongoCollection = database.GetCollection<BsonDocument>(collectionName);
-					}
-					else
-					{
-						return;
-					}
-				}
-				else if (string.IsNullOrEmpty(db_ip) && string.IsNullOrEmpty(db_port))
-				{
-					var client = new MongoClient("mongodb://localhost:27017");
-					var database = client.GetDatabase("qb");
-					mongoCollection = database.GetCollection<BsonDocument>("deity");
-				}
-
-				if (mongoCollection == null)
-				{
-					return;
-				}
-
-				var records = await mongoCollection.Find(new BsonDocument()).ToListAsync();
-				Upgrades.Clear();
-
-				foreach (var bsonDoc in records)
-				{
-					var newUpgrade = new Upgrades
-					{
-						Id = bsonDoc.Contains("_id") ? bsonDoc["_id"].AsInt32 : 0,
-						Name = bsonDoc.Contains("name") ? bsonDoc["name"].AsString : "Unknown",
-						Description = bsonDoc.Contains("description") ? bsonDoc["description"].AsString : "Unknown",
-						Cost = bsonDoc.Contains("cost") ? bsonDoc["cost"].AsInt32 : 0,
-						Currency = bsonDoc.Contains("currency") ? bsonDoc["currency"].AsInt32 : 0,
-						CostScale = bsonDoc.Contains("costscale") ? bsonDoc["costscale"].AsInt32 : 0,
-						EffectScale = bsonDoc.Contains("effectscale") ? bsonDoc["effectscale"].AsDouble : 0,
-						MaxLevel = bsonDoc.Contains("maxlevel") ? bsonDoc["maxlevel"].AsInt32 : 0,
-						EffectLow = bsonDoc.Contains("effectlow") ? bsonDoc["effectlow"].AsDouble : 0,
-						EffectHigh = bsonDoc.Contains("effecthigh") ? bsonDoc["effecthigh"].AsDouble : 0,
-						EffectRe = bsonDoc.Contains("effectre") ? bsonDoc["effectre"].AsDouble : 0,
-						EffectPre = bsonDoc.Contains("effectpre") ? bsonDoc["effectpre"].AsDouble : 0,
-						EffectAsc = bsonDoc.Contains("effectasc") ? bsonDoc["effectasc"].AsDouble : 0,
-						EffectSac = bsonDoc.Contains("effectsac") ? bsonDoc["effectsac"].AsDouble : 0,
-						EffectDe = bsonDoc.Contains("effectde") ? bsonDoc["effectde"].AsDouble : 0
-					};
-
-					Upgrades.Add(newUpgrade);
-				}
-			}
-			catch (System.Net.Sockets.SocketException ex)
-			{
-				Debug.WriteLine("SocketException: " + ex.Message);
-			}
-			catch (MongoConnectionException ex)
-			{
-				Debug.WriteLine("MongoConnectionException: " + ex.Message);
-			}
-			catch (Exception ex)
-			{
-				Debug.WriteLine("Exception: " + ex.Message);
-			}
-		}
-
-		public void LoadFromJson()
-		{
-			try
-			{
-				if (string.IsNullOrEmpty(jsonFilePath))
-				{
-					Debug.WriteLine("JSON file path is not provided.");
-					return;
-				}
-				else
-				{
-					jsonFilePath = jsonFilePath.Replace(@"\", @"\\");
-				}
-
-				if (File.Exists(jsonFilePath))  // Check if the JSON file exists
-				{
-					string json = File.ReadAllText(jsonFilePath);
-					var upgrades = JsonSerializer.Deserialize<List<Upgrades>>(json);
-
-					Upgrades.Clear();
-					foreach (var upgrade in upgrades)
-					{
-						Upgrades.Add(upgrade);
-					}
-				}
-				else
-				{
-					Debug.WriteLine("JSON file does not exist: " + jsonFilePath);
-				}
+				string json = File.ReadAllText(filePath);
+				return JArray.Parse(json);
 			}
 			catch (FileNotFoundException ex)
 			{
-				Debug.WriteLine("FileNotFoundException: " + ex.Message);
+				throw new FileNotFoundException("The JSON file was not found.", ex);
+			}
+			catch (JsonException ex)
+			{
+				throw new ArgumentException("The file does not contain valid JSON data.", ex);
 			}
 			catch (Exception ex)
 			{
-				Debug.WriteLine("Exception: " + ex.Message);
+				throw new Exception("An error occurred while reading the JSON file.", ex);
 			}
 		}
+
+		public static Dictionary<string, object> ParseJsonObject(JObject obj)
+		{
+			Dictionary<string, object> dict = new Dictionary<string, object>();
+			foreach (var prop in obj.Properties())
+			{
+				dict[prop.Name] = prop.Value.ToObject<object>();
+			}
+			return dict;
+		}
+
+		public static List<Dictionary<string, object>> ParseJArray(JArray array)
+		{
+			List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
+			foreach (JObject obj in array)
+			{
+				list.Add(ParseJsonObject(obj));
+			}
+			return list;
+		}
+
+        public static void SaveJsonToFile(JArray jsonData)
+        {
+            try
+            {
+                string json = jsonData.ToString(Formatting.Indented);
+                File.WriteAllText("", json);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while saving the JSON file.", ex);
+            }
+        }
+    }
+
+	public class ViewModel : INotifyPropertyChanged
+	{
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected virtual void OnPropertyChanged(string propertyName)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
+
+		private List<Dictionary<string, object>> _jsonData;
+		public List<Dictionary<string, object>> JsonData
+		{
+			get => _jsonData;
+			set
+			{
+				_jsonData = value;
+				OnPropertyChanged(nameof(JsonData));
+			}
+		}
+		private Stack<object> _navigationHistory = new Stack<object>();
+
+		public Stack<object> NavigationHistory { get => _navigationHistory; }
+
+		public void LoadJsonData(string filePath)
+		{
+			try
+			{
+				if (!File.Exists(filePath))
+				{
+					throw new FileNotFoundException("The JSON file was not found.");
+				}
+
+				JArray jsonData = JsonParser.ReadJsonFromFile(filePath);
+				JsonData = JsonParser.ParseJArray(jsonData);
+				JSON_FILE_PATH.currentTreeviewLoaded = filePath;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"An error occurred: {ex.Message}");
+			}
+		}
+
+		public void UpdateTreeView(JToken node, TreeViewItem parent = null)
+		{
+			if (node == null || parent == null)
+			{
+				return;
+			}
+
+			if (node is JObject)
+			{
+				foreach (var prop in ((JObject)node).Properties())
+				{
+					TreeViewItem propItem = new TreeViewItem();
+					propItem.Header = $"{prop.Name}: {prop.Value}";
+					propItem.Tag = prop.Value;
+					parent.Items.Add(propItem);
+					UpdateTreeView(prop.Value, propItem);
+				}
+			}
+			else if (node is JArray)
+			{
+				for (int i = 0; i < ((JArray)node).Count; i++)
+				{
+					JToken item = ((JArray)node)[i];
+					TreeViewItem itemNode = new TreeViewItem();
+					itemNode.Header = $"Item {i}";
+					itemNode.Tag = item;
+					parent.Items.Add(itemNode);
+
+					// Add child nodes for the item's properties
+					if (item is JObject itemObj)
+					{
+						foreach (var prop in itemObj.Properties())
+						{
+							TreeViewItem propItem = new TreeViewItem();
+							propItem.Header = $"{prop.Name}: {prop.Value}";
+							propItem.Tag = prop.Value;
+							itemNode.Items.Add(propItem);
+						}
+					}
+				}
+			}
+		}
+
+		private void UpdateChildren(JToken childNode, TreeViewItem parentItem)
+		{
+			if (childNode is JObject objChild)
+			{
+				// Handle nested objects
+				foreach (var prop in objChild.Properties())
+				{
+					TreeViewItem propItem = new TreeViewItem();
+					propItem.Header = $"{prop.Name}: {prop.Value}";
+					propItem.Tag = prop.Value;
+		
+					UpdateChildren(prop.Value, propItem);
+		
+					parentItem.Items.Add(propItem);
+				}
+			}
+			else if (childNode is JArray arrChild)
+			{
+				// Handle nested arrays
+				for (int i = 0; i < arrChild.Count; i++)
+				{
+					TreeViewItem arrItem = new TreeViewItem();
+					arrItem.Header = $"[{i}]: {arrChild[i].ToString(Formatting.None)}";
+					arrItem.Tag = arrChild[i];
+		
+					UpdateChildren(arrChild[i], arrItem);
+		
+					parentItem.Items.Add(arrItem);
+				}
+			}
+			else
+			{
+				TreeViewItem leafNode = new TreeViewItem();
+				leafNode.Header = childNode.ToString(Formatting.None);
+				leafNode.Tag = childNode;
+				parentItem.Items.Add(leafNode);
+			}
+		}
+	}
+
+	public class SaveToJSON
+	{
+
+
+		string SaveData = JsonConvert.SerializeObject("");
 	}
 }
