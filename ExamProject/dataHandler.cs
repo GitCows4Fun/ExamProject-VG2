@@ -11,7 +11,7 @@ namespace ExamProject
 	{
 #pragma warning disable IDE1006
 		public static string saveLocation { get; } = @"../../../data/saves/";
-        public static string upgrades { get; } = @"../../../data/upgrades.json";
+		public static string upgrades { get; } = @"../../../data/upgrades.json";
 		public static string gameData { get; } = @"../../../data/gd.json";
 		public static string currentTreeviewLoaded { get; set; } = upgrades;
 #pragma warning restore IDE1006
@@ -60,19 +60,19 @@ namespace ExamProject
 			return list;
 		}
 
-        public static void SaveJsonToFile(JArray jsonData)
-        {
-            try
-            {
-                string json = jsonData.ToString(Formatting.Indented);
-                File.WriteAllText("", json);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while saving the JSON file.", ex);
-            }
-        }
-    }
+		public static void SaveJsonToFile(JArray jsonData)
+		{
+			try
+			{
+				string json = jsonData.ToString(Formatting.Indented);
+				File.WriteAllText("", json);
+			}
+			catch (Exception ex)
+			{
+				throw new Exception("An error occurred while saving the JSON file.", ex);
+			}
+		}
+	}
 
 	public class ViewModel : INotifyPropertyChanged
 	{
